@@ -2,7 +2,7 @@
 *
 !*/
 
-# explicitly Include
+# explicitly include
 
 !.gitignore
 !.README.md
@@ -12,3 +12,6 @@
 !yabai/**
 !skhd/**
 !sketchybar/**
+
+# ignore
+nvim/lazy-lock.json
