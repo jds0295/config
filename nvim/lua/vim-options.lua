@@ -2,6 +2,7 @@ vim.cmd "set tabstop=2" --tab char appears as 2 spaces
 vim.cmd "set shiftwidth=2" -- autoindent = 2
 vim.cmd "set nu rnu" -- line numbers + relative
 vim.cmd "set scrolloff=5"
+vim.cmd "set nowrap"
 vim.g.mapleader = " "
 
 vim.opt.termguicolors = true
