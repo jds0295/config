@@ -15,7 +15,7 @@ return {
 					-- copilot
 					{
 						function()
-							local value 
+							local value
 							if vim.g.copilot_enabled == 1 then
 								value = "on"
 								return "%#Blue# " .. value
@@ -31,7 +31,7 @@ return {
 						fmt = function(str)
 							return "{…} " .. str:lower():match("^%s*(.-)%s*$")
 						end
-					}, 
+					},
 					-- cmp
 					{
 						function()
@@ -45,13 +45,13 @@ return {
 					}
 				},
 				lualine_y = {
-					'encoding', 
-					{'fileformat',      
+					'encoding',
+					{'fileformat',
 						symbols = {
 							unix = '', -- e712
 							dos = '',  -- e70f
 							mac = '',  -- e711
-					}}, 
+					}},
 					'filetype',
 				},
 				lualine_z = {
