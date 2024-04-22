@@ -1,0 +1,14 @@
+# ignore all by default
+*
+!*/
+
+# explicitly Include
+
+!.gitignore
+!.README.md
+
+!tmux/**
+!nvim/**
+!yabai/**
+!skhd/**
+!sketchybar/**
