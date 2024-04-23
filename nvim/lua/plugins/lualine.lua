@@ -36,7 +36,7 @@ return {
 					{
 						function()
 
-							if cmp_enabled then
+							if CMP_ENABLED then
 								return "⎁ " .. "%#Green#%#lualine_c_normal#"
 							else
 								return "⎁ " .. "%#Red#%#lualine_c_normal#"
@@ -60,7 +60,7 @@ return {
 				}
 			}
 		}
-		hl_c = vim.api.nvim_get_hl_by_name('lualine_c_normal', true)
+		local hl_c = vim.api.nvim_get_hl_by_name('lualine_c_normal', true)
 		vim.api.nvim_set_hl(0, 'Red', {foreground = 0xFF0000, background = hl_c.background})
 		vim.api.nvim_set_hl(0, 'Green', {foreground = 0x00FF00, background = hl_c.background})
 		vim.api.nvim_set_hl(0, 'Blue', {foreground = 0x0000FF, background = hl_c.background})

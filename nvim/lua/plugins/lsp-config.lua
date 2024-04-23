@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls" }
+				ensure_installed = { "lua_ls", "gopls" }
 			})
 		end
 	},
@@ -17,7 +17,26 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup{
+			local util = require("lspconfig/util")
+			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+			lspconfig.gopls.setup{
+				capabilities = capabilities,
+				cmd = {"gopls", "serve"},
+				filetypes = {"go", "gomod"},
+				root_dir = util.root_pattern{"go.work", "go.mod", ".git"},
+				settings = {
+					gopls = {
+						analyses = {
+							unusedparams = true,
+						},
+						staticcheck = true,
+					},
+				},
+			}
+
+			lspconfig.lua_ls.setup {
+				capabilities = capabilities,
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -26,10 +45,13 @@ return {
 					}
 				}
 			}
-			-- lspconfig.gopls.setup{}
+			require('lspconfig')['gopls'].setup {
+			}
+
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true })
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true })
 			vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { noremap = true, silent = true })
+			vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { noremap = true, silent = true })
 		end
 	}
 }

@@ -1,39 +1,42 @@
 return {
 	{ --CMP
-		"hrsh7th/nvim-cmp",
+		"hrsh7th/nvim-cmp", -- Main autocompletion framework
 		config = function()
-			cmp_enabled = flase
-
+			CMP_ENABLED = false -- for lualine status, toggle and starting state
+			require("luasnip.loaders.from_vscode").lazy_load() -- for luasnip to work
 			local cmp = require'cmp'
 			cmp.setup({
+				enabled = CMP_ENABLED,
 				-- Snippet
 				snippet = {
 					expand = function(args)
-						vim.fn["vsnip#anonymous"](args.body)
+						-- vim.fn["vsnip#anonymous"](args.body) -- vsnip (a)
+						require('luasnip').lsp_expand(args.body) -- luasnip (b)
 					end
 				},
 				-- Sources
 				sources = {
+					-- { name = 'vsnip' }, -- vsnip (a)
+					{ name = 'luasnip'}, -- luasnip (b)
 					{ name = 'nvim_lsp', keyword_length = 3},
-					{ name = 'vsnip', keyword_length = 2},
-					{ name = 'path' },
-					{ name = 'buffer',keyword_length = 2 },
-					{ name = 'cmdline' },
-					{ name = 'nvim_lua', keyword_length = 2},
 					{ name = 'nvim_lsp_signature_help' },
+					{ name = 'path' },
+					{ name = 'buffer',keyword_length = 3 },
+					{ name = 'cmdline',keyword_length = 3 },
+					{ name = 'nvim_lua', keyword_length = 3}, -- neovim lua api
 				},
 				-- formatting
 				formatting = {
 					fields = {'menu', 'abbr', 'kind'},
 					format = function(entry, item)
 						local menu_icon = {
+							luasnip = '󰁨',
 							nvim_lsp = 'λ',
-							vsnip = '󰁨',
-							buffer = '',
+							nvim_lsp_signature_help = '',
 							path = '',
+							buffer = '',
 							cmdline = '',
 							nvim_lua = '󰢱',
-							nvim_lsp_signature_help = '',
 						}
 						item.menu = menu_icon[entry.source.name]
 						return item
@@ -49,27 +52,25 @@ return {
 					['<M-Space>'] = cmp.mapping.complete(), -- to bring up the code completion at current cursor
 					['<Tab>'] = cmp.mapping.select_next_item(), -- Move to next entry in the list
 					['<S-Tab>'] = cmp.mapping.select_prev_item(), -- Move to previous entry in the list
+					['<C-b>'] = cmp.mapping.scroll_docs(-4),
+					['<C-f>'] = cmp.mapping.scroll_docs(4),
 					['<C-e>'] = cmp.mapping.close(), -- to close the text complete popup
 					['<CR>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Insert,
 						select = true,
 					}) -- insert the currently selected suggesion
 				},
-				-- toggel cmp
-				enabled = function()
-					return cmp_enabled
-				end
 			})
 			-- Function to enable code completion
 			function _G.toggle_cmp()
-				if cmp_enabled then
+				if CMP_ENABLED then
 					-- If nvim-cmp is enabled, disable it
-					require'cmp'.setup.buffer { enabled = false }
-					cmp_enabled = false
+					require'cmp'.setup { enabled = false }
+					CMP_ENABLED = false
 				else
 					-- If nvim-cmp is disabled, enable it
-					require'cmp'.setup.buffer { enabled = true }
-					cmp_enabled = true
+					require'cmp'.setup { enabled = true }
+					CMP_ENABLED = true
 				end
 			end
 
@@ -77,41 +78,45 @@ return {
 			vim.api.nvim_set_keymap('n', '<F5>', ':lua toggle_cmp()<CR>', { noremap = true, silent = true })
 		end
 	},
-	{
-		"neovim/nvim-lspconfig",
-	},
-	{
-		"hrsh7th/cmp-nvim-lsp"
-	},
-	{
-		"hrsh7th/cmp-nvim-lua"
-	},
-	{
-		"hrsh7th/cmp-buffer"
-	},
-	{
-		"hrsh7th/cmp-path"
-	},
-	{
-		"hrsh7th/cmp-cmdline"
-	},
-	{
-		"hrsh7th/cmp-vsnip"
-	},
-	{
-		"hrsh7th/vim-vsnip"
-	},
-	{
-		"hrsh7th/cmp-nvim-lsp-signature-help"
-	},
+	-- {	"hrsh7th/vim-vsnip", dependencies = { "cmp-vsnip" } }, -- snippet engine a
+	{	"L3MON4D3/LuaSnip", dependencies = { "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" } }, -- snippet engine b
+	{	"hrsh7th/cmp-nvim-lsp" }, --source, talks to lsp's loaded on current buffer
+	{	"hrsh7th/cmp-nvim-lua" }, --source, for neovim Lua API.
+	{	"hrsh7th/cmp-buffer" }, --source
+	{	"hrsh7th/cmp-path" }, --source
+	{	"hrsh7th/cmp-nvim-lsp-signature-help" }, --source
+	{	"hrsh7th/cmp-cmdline", config = function ()
+		local cmp = require'cmp'
+		-- `/` cmdline setup.
+		cmp.setup.cmdline('/', {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = 'buffer' }
+			}
+		})
+		-- `:` cmdline setup.
+		cmp.setup.cmdline(':', {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = 'path' }
+			}, {
+					{
+						name = 'cmdline',
+						option = {
+							ignore_cmds = { 'Man', '!' }
+						}
+					}
+				})
+		})
+	end }, --source
+
 	{ -- copilot
 		"github/copilot.vim",
 		config = function()
 			-- specify node binary path
 			vim.g.copilot_node_command = "~/.nvm/versions/node/v20.12.2/bin/node"
 			-- enable copilot by default
-			vim.g.copilot_enabled = 1
-
+			vim.g.copilot_enabled = 0
 			-- function to toggle on and off
 			vim.api.nvim_create_user_command("CopilotToggle", function()
 				if vim.g.copilot_enabled == 1 then
@@ -132,7 +137,7 @@ return {
 		"Exafunction/codeium.vim",
 		config = function()
 			-- disable codeium by default
-			vim.g.codeium_enabled =false
+			vim.g.codeium_enabled = false
 			vim.g.codeium_dissaable_bindings = 1
 
 			-- toggle on and off using F4 key
