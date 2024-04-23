@@ -20,7 +20,7 @@ return {
 					{ name = 'buffer',keyword_length = 2 },
 					{ name = 'cmdline' },
 					{ name = 'nvim_lua', keyword_length = 2},
-					-- { name = 'nvim_lsp_signature_help' },
+					{ name = 'nvim_lsp_signature_help' },
 				},
 				-- formatting
 				formatting = {
@@ -31,8 +31,9 @@ return {
 							vsnip = '󰁨',
 							buffer = '',
 							path = '',
-							cmdline = '',
+							cmdline = '',
 							nvim_lua = '󰢱',
+							nvim_lsp_signature_help = '',
 						}
 						item.menu = menu_icon[entry.source.name]
 						return item
@@ -100,6 +101,9 @@ return {
 	{
 		"hrsh7th/vim-vsnip"
 	},
+	{
+		"hrsh7th/cmp-nvim-lsp-signature-help"
+	},
 	{ -- copilot
 		"github/copilot.vim",
 		config = function()
@@ -125,6 +129,15 @@ return {
 	},
 	-- Codeium
 	{
+		"Exafunction/codeium.vim",
+		config = function()
+			-- disable codeium by default
+			vim.g.codeium_enabled =false
+			vim.g.codeium_dissaable_bindings = 1
 
+			-- toggle on and off using F4 key
+			vim.keymap.set('n', '<F4>', ':CodeiumToggle<CR>', { noremap = true, silent = true })
+			vim.keymap.set('i', '<F4>', '<ESC>:CodeiumToggle<CR>', { noremap = true, silent = true })
+		end
 	}
 }
