@@ -2,8 +2,9 @@ return {
 	{ --CMP
 		"hrsh7th/nvim-cmp",
 		config = function()
+			cmp_enabled = flase
+
 			local cmp = require'cmp'
-			-- cmp_endabled = flase
 			cmp.setup({
 				-- Snippet
 				snippet = {
@@ -53,7 +54,26 @@ return {
 						select = true,
 					}) -- insert the currently selected suggesion
 				},
+				-- toggel cmp
+				enabled = function()
+					return cmp_enabled
+				end
 			})
+			-- Function to enable code completion
+			function _G.toggle_cmp()
+				if cmp_enabled then
+					-- If nvim-cmp is enabled, disable it
+					require'cmp'.setup.buffer { enabled = false }
+					cmp_enabled = false
+				else
+					-- If nvim-cmp is disabled, enable it
+					require'cmp'.setup.buffer { enabled = true }
+					cmp_enabled = true
+				end
+			end
+
+			--Bind the function to a key
+			vim.api.nvim_set_keymap('n', '<F5>', ':lua toggle_cmp()<CR>', { noremap = true, silent = true })
 		end
 	},
 	{
@@ -102,5 +122,9 @@ return {
 			vim.keymap.set('n', '<F3>', ':CopilotToggle<CR>', { noremap = true, silent = true })
 			vim.keymap.set('i', '<F3>', '<ESC>:CopilotToggle<CR>', { noremap = true, silent = true })
 		end
+	},
+	-- Codeium
+	{
+
 	}
 }
