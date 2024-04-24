@@ -61,17 +61,10 @@ return {
 					}) -- insert the currently selected suggesion
 				},
 			})
-			-- Function to enable code completion
+			-- Function to toggle code completion
 			function _G.toggle_cmp()
-				if CMP_ENABLED then
-					-- If nvim-cmp is enabled, disable it
-					require'cmp'.setup { enabled = false }
-					CMP_ENABLED = false
-				else
-					-- If nvim-cmp is disabled, enable it
-					require'cmp'.setup { enabled = true }
-					CMP_ENABLED = true
-				end
+				require'cmp'.setup { enabled = not CMP_ENABLED }
+				CMP_ENABLED = not CMP_ENABLED
 			end
 
 			--Bind the function to a key
