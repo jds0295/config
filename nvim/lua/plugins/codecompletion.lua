@@ -115,7 +115,7 @@ return {
 		config = function()
 			-- specify node binary path
 			vim.g.copilot_node_command = "~/.nvm/versions/node/v20.12.2/bin/node"
-			-- enable copilot by default
+			-- disable copilot by default
 			vim.g.copilot_enabled = 0
 			-- function to toggle on and off
 			vim.api.nvim_create_user_command("CopilotToggle", function()
@@ -125,7 +125,6 @@ return {
 					vim.cmd("Copilot enable")
 				end
 			end, { nargs = 0 })
-
 
 			-- toggle on and off using F3 key
 			vim.keymap.set('n', '<F3>', ':CopilotToggle<CR>', { noremap = true, silent = true })
@@ -138,11 +137,21 @@ return {
 		config = function()
 			-- disable codeium by default
 			vim.g.codeium_enabled = false
-			vim.g.codeium_dissaable_bindings = 1
+			vim.g.codeium_disable_bindings = 1
 
+			-- function to toggle on and off
+			vim.api.nvim_create_user_command("CodeiumToggleCustom", function()
+				if vim.g.codeium_enabled == true then
+					vim.cmd("CodeiumDisable")
+					vim.g.codeium_disable_bindings = 1
+				else
+					vim.cmd("CodeiumEnable")
+					vim.g.codeium_disable_bindings = 0
+				end
+			end, { nargs = 0 })
 			-- toggle on and off using F4 key
-			vim.keymap.set('n', '<F4>', ':CodeiumToggle<CR>', { noremap = true, silent = true })
-			vim.keymap.set('i', '<F4>', '<ESC>:CodeiumToggle<CR>', { noremap = true, silent = true })
+			vim.keymap.set('n', '<F4>', ':CodeiumToggleCustom<CR>', { noremap = true, silent = true })
+			vim.keymap.set('i', '<F4>', '<ESC>:CodeiumToggleCustom<CR>', { noremap = true, silent = true })
 		end
 	}
 }

@@ -15,13 +15,13 @@ return {
 					-- copilot
 					{
 						function()
-							local value
+							local status
 							if vim.g.copilot_enabled == 1 then
-								value = "on"
-								return "%#Blue# " .. value
+								status = vim.fn.execute("Copilot status"):match('Copilot: (%w+)')
+								return "%#Blue# " .. status
 							else
-								value = "off"
-								return "%#Red# " .. value
+								status = "off"
+								return "%#Red# " .. status
 							end
 						end
 					},
@@ -35,7 +35,6 @@ return {
 					-- cmp
 					{
 						function()
-
 							if CMP_ENABLED then
 								return "⎁ " .. "%#Green#%#lualine_c_normal#"
 							else
