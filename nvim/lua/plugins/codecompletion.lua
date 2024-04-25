@@ -23,11 +23,12 @@ return {
 					{ name = 'path' },
 					{ name = 'buffer',keyword_length = 3 },
 					{ name = 'cmdline',keyword_length = 3 },
+					{ name = 'tmux',keyword_length = 3 },
 					{ name = 'nvim_lua', keyword_length = 3}, -- neovim lua api
 				},
 				-- formatting
 				formatting = {
-					fields = {'menu', 'abbr', 'kind'},
+					fields = {'menu', 'abbr', 'kind'}, -- icon/source, result, type
 					format = function(entry, item)
 						local menu_icon = {
 							luasnip = '󰁨',
@@ -36,9 +37,38 @@ return {
 							path = '',
 							buffer = '',
 							cmdline = '',
+							tmux = '',
 							nvim_lua = '󰢱',
 						}
+						local kind_icons = {
+							Text = "",
+							Method = "󰆧",
+							Function = "󰊕",
+							Constructor = "",
+							Field = "󰇽",
+							Variable = "󰂡",
+							Class = "󰠱",
+							Interface = "",
+							Module = "",
+							Property = "󰜢",
+							Unit = "",
+							Value = "󰎠",
+							Enum = "",
+							Keyword = "󰌋",
+							Snippet = "",
+							Color = "󰏘",
+							File = "󰈙",
+							Reference = "",
+							Folder = "󰉋",
+							EnumMember = "",
+							Constant = "󰏿",
+							Struct = "",
+							Event = "",
+							Operator = "󰆕",
+							TypeParameter = "󰅲",
+						}
 						item.menu = menu_icon[entry.source.name]
+						item.kind = string.format('%s %s', kind_icons[item.kind], item.kind)
 						return item
 					end,
 				},
@@ -77,6 +107,7 @@ return {
 	{	"hrsh7th/cmp-nvim-lua" }, --source, for neovim Lua API.
 	{	"hrsh7th/cmp-buffer" }, --source
 	{	"hrsh7th/cmp-path" }, --source
+	{ "andersevenrud/cmp-tmux" }, --source
 	{	"hrsh7th/cmp-nvim-lsp-signature-help" }, --source
 	{	"hrsh7th/cmp-cmdline", config = function ()
 		local cmp = require'cmp'
