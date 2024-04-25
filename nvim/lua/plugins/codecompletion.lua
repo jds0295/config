@@ -6,7 +6,7 @@ return {
 			require("luasnip.loaders.from_vscode").lazy_load() -- for luasnip to work
 			local cmp = require'cmp'
 			cmp.setup({
-				enabled = CMP_ENABLED,
+				enabled = CMP_ENABLED, -- can be omitted if wanting enabled by default
 				-- Snippet
 				snippet = {
 					expand = function(args)
@@ -57,8 +57,8 @@ return {
 					['<C-e>'] = cmp.mapping.close(), -- to close the text complete popup
 					['<CR>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Insert,
-						select = true,
-					}) -- insert the currently selected suggesion
+						select = false,
+					}) -- insert the currently selected suggesion (set to false to only insert current explicitly selected item)
 				},
 			})
 			-- Function to toggle code completion
@@ -102,7 +102,6 @@ return {
 				})
 		})
 	end }, --source
-
 	{ -- copilot
 		"github/copilot.vim",
 		config = function()
