@@ -24,6 +24,7 @@ return {
 					{ name = 'buffer',keyword_length = 3 },
 					{ name = 'cmdline',keyword_length = 3 },
 					{ name = 'tmux',keyword_length = 3 },
+					{ name = 'spell',keyword_length = 3 },
 					{ name = 'nvim_lua', keyword_length = 3}, -- neovim lua api
 				},
 				-- formatting
@@ -38,6 +39,7 @@ return {
 							buffer = '',
 							cmdline = '',
 							tmux = '',
+							spell = '',
 							nvim_lua = '󰢱',
 						}
 						local kind_icons = {
@@ -108,6 +110,7 @@ return {
 	{	"hrsh7th/cmp-buffer" }, --source
 	{	"hrsh7th/cmp-path" }, --source
 	{ "andersevenrud/cmp-tmux" }, --source
+	{ "f3fora/cmp-spell" }, -- source
 	{	"hrsh7th/cmp-nvim-lsp-signature-help" }, --source
 	{	"hrsh7th/cmp-cmdline", config = function ()
 		local cmp = require'cmp'
