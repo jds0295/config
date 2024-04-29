@@ -60,8 +60,14 @@ return {
 			}
 		}
 		local hl_c = vim.api.nvim_get_hl_by_name('lualine_c_normal', true)
-		vim.api.nvim_set_hl(0, 'Red', {foreground = 0xFF0000, background = hl_c.background})
-		vim.api.nvim_set_hl(0, 'Green', {foreground = 0x00FF00, background = hl_c.background})
-		vim.api.nvim_set_hl(0, 'Blue', {foreground = 0x0000FF, background = hl_c.background})
+		local hl_error = vim.api.nvim_get_hl_by_name('Error', true)
+		local hl_boolean = vim.api.nvim_get_hl_by_name('Boolean', true)
+		local hl_character = vim.api.nvim_get_hl_by_name('Character', true)
+		vim.api.nvim_set_hl(0, 'Red', {foreground = hl_error.foreground, background = hl_c.background})
+		vim.api.nvim_set_hl(0, 'Green', {foreground = hl_character.foreground, background = hl_c.background})
+		vim.api.nvim_set_hl(0, 'Blue', {foreground = hl_boolean.foreground, background = hl_c.background})
+		-- vim.api.nvim_set_hl(0, 'Red', {foreground = 0xFF0000, background = hl_c.background})
+		-- vim.api.nvim_set_hl(0, 'Green', {foreground = 0x00FF00, background = hl_c.background})
+		-- vim.api.nvim_set_hl(0, 'Blue', {foreground = 0x0000FF, background = hl_c.background})
 	end
 }
