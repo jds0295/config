@@ -9,7 +9,11 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "gopls" }
+				ensure_installed = {
+					"lua_ls",
+					"gopls",
+					"groovyls",
+				}
 			})
 		end
 	},
@@ -34,7 +38,6 @@ return {
 					},
 				},
 			}
-
 			lspconfig.lua_ls.setup {
 				capabilities = capabilities,
 				settings = {
@@ -45,8 +48,11 @@ return {
 					}
 				}
 			}
-			require('lspconfig')['gopls'].setup {
+			lspconfig.groovyls.setup {
+				capabilities = capabilities,
 			}
+
+			require('lspconfig')['gopls'].setup {}
 
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true })
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true })
