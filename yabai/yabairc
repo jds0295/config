@@ -43,13 +43,37 @@ yabai -m config                                 \
     mouse_action2                resize         \
     mouse_drop_action            swap           
 
+##### Create Spaces and assign apps to spaces
+function setup_space {
+  local idx="$1"
+  local name="$2"
+  local space =
+  echo "Setup space $idx : $name"
+  space =$(yabai -m query --spaces --space "$idx")A
+  if [ -z "$space" ]; then
+    yabai -m space --create
+  fi
+
+  yabai -m space "$idx" --label "$name"
+}
+
+setup_space 1 browse
+setup_space 2 code
+setup_space 3 chat
+
 echo "yabai configuration loaded.."
 
+# move some apps automatically to specific spaces
+yabai -m rule --add app="^Safari$" space=^1
+yabai -m rule --add app="^Firefox$" space=^1
+yabai -m rule --add app="^Alacritty$" space=^2
+yabai -m rule --add app="^Microsoft Teams.*$" space=^3
+
+# Ignore the following
 yabai -m rule --add app="^Calculator$" manage=off		
 yabai -m rule --add app="^System Settings$" manage=off		
-
-yabai -m rule --add app="Android*" manage=off		
-yabai -m rule --add app="qemu*" manage=off		
+yabai -m rule --add app="Android.*$" manage=off		
+yabai -m rule --add app="qemu.*$" manage=off		
 
 echo "yabai rules added.."
 
