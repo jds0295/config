@@ -52,7 +52,7 @@ return {
 				capabilities = capabilities,
 			}
 
-			require('lspconfig')['gopls'].setup {}
+			-- require('lspconfig')['gopls'].setup {}
 
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true })
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true })
