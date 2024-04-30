@@ -1,5 +1,5 @@
 vim.cmd "set tabstop=2" --tab char appears as 2 spaces
-vim.cmd "set shiftwidth=2" -- autoindent = 2
+-- vim.cmd "set shiftwidth=2" -- autoindent = 2
 vim.cmd "set nu rnu" -- line numbers + relative
 vim.cmd "set scrolloff=5" -- always see x lines above or below cursor
 vim.cmd "set nowrap" -- no text wrapping
