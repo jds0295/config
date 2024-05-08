@@ -1,4 +1,4 @@
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 # ZSH_THEME="dracula"
 
 plugins=(
