@@ -5,6 +5,7 @@
 # explicitly include
 !.gitignore
 !README.md
+!starship.toml
 
 !alacritty/**
 !tmux/**
