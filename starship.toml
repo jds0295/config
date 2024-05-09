@@ -1,0 +1,112 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[░▒▓](color_bg1)\
+$hostname\
+$username\
+[ ](fg:color_fg1 bg:color_bg1)\
+[](fg:color_bg1 bg:color_bg2)\
+$directory\
+[](fg:color_bg2 bg:color_bg3)\
+$git_branch\
+$git_status\
+[](fg:color_bg3 bg:color_bg4)\
+$all\
+$nodejs\
+$rust\
+$golang\
+[](fg:color_bg4 bg:color_bg5)\
+[](fg:color_bg5)\
+"""
+
+right_format = """
+$cmd_duration\
+"""
+
+add_newline = true
+palette = 'jds_cat'
+
+[palettes.jds]
+color_bg1 = '#a3aed2'
+color_bg2 = '#769ff0'
+color_bg3 = '#394260'
+color_bg4 = '#212736'
+color_bg5 = '#1d2230'
+
+[palettes.jds_cat]
+color_bg1 = '#313244'
+color_bg2 = '#45475a'
+color_bg3 = '#585b70'
+color_bg4 = '#6c7086'
+color_bg5 = '#7f849c'
+color_fg1 = '#8D90C4' #host / user
+color_fg2 = '#a7acd9' #directory
+color_fg3 = '#BDC3F0' #git
+color_fg4 = '#68B3E2' #dir specific e.g go / node/ rust
+color_fg5 = '#40434F'
+color_white = '#e3e5e5'
+
+[line_break]
+disabled = true
+
+[character]
+disabled = true
+
+[hostname]
+format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+ssh_only = true
+detect_env_vars = ['SSH_CONNECTION']
+
+[username]
+style_user = 'fg:bold yellow bg:color_bg1'
+style_root = 'fg:red yellow bg:color_bg1'
+# show_always = true
+format = '[$user ]($style)'
+detect_env_vars = ['SSH_CONNECTION']
+
+[cmd_duration]
+min_time = 200
+format = '[ $duration](bold yellow)'
+
+[directory]
+style = "fg:color_fg2 bg:color_bg2"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
+[git_branch]
+symbol = ""
+style = "bg:color_bg3"
+format = '[[ $symbol $branch ](fg:color_fg3 bg:color_bg3)]($style)'
+
+[git_status]
+style = "bg:color_bg3"
+format = '[[($all_status$ahead_behind )](fg:color_fg3 bg:color_bg3)]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:color_bg4"
+format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:color_bg4"
+format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:color_bg4"
+format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
+
+[time]
+disabled = true
+time_format = "%R" # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
