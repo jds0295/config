@@ -16,6 +16,7 @@ $nodejs\
 $rust\
 $golang\
 [](fg:color_bg4 bg:color_bg5)\
+${custom.tmux}\
 [](fg:color_bg5)\
 """
 
@@ -23,15 +24,8 @@ right_format = """
 $cmd_duration\
 """
 
-add_newline = true
+add_newline = false
 palette = 'jds_cat'
-
-[palettes.jds]
-color_bg1 = '#a3aed2'
-color_bg2 = '#769ff0'
-color_bg3 = '#394260'
-color_bg4 = '#212736'
-color_bg5 = '#1d2230'
 
 [palettes.jds_cat]
 color_bg1 = '#313244'
@@ -44,12 +38,19 @@ color_fg2 = '#a7acd9' #directory
 color_fg3 = '#BDC3F0' #git
 color_fg4 = '#68B3E2' #dir specific e.g go / node/ rust
 color_fg5 = '#40434F'
+red = '#f38ba8'
+yellow = "#f9e2af"
+green = "#a6e3a1"
+blue = "#89b4fa"
 color_white = '#e3e5e5'
 
 [line_break]
 disabled = true
 
 [character]
+disabled = true
+
+[time]
 disabled = true
 
 [hostname]
@@ -59,7 +60,7 @@ detect_env_vars = ['SSH_CONNECTION']
 
 [username]
 style_user = 'fg:bold yellow bg:color_bg1'
-style_root = 'fg:red yellow bg:color_bg1'
+style_root = 'fg:bold red bg:color_bg1'
 # show_always = true
 format = '[$user ]($style)'
 detect_env_vars = ['SSH_CONNECTION']
@@ -88,7 +89,12 @@ format = '[[ $symbol $branch ](fg:color_fg3 bg:color_bg3)]($style)'
 
 [git_status]
 style = "bg:color_bg3"
-format = '[[($all_status$ahead_behind )](fg:color_fg3 bg:color_bg3)]($style)'
+format = '[[($all_status$ahead_behind )](fg:color_fg4 bg:color_bg3)]($style)'
+
+[custom.tmux]
+style = "fg:bold green bg:color_bg5"
+symbol = ""
+when = '''test -n "$TMUX" '''
 
 [nodejs]
 symbol = ""
@@ -104,9 +110,3 @@ format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
 symbol = ""
 style = "bg:color_bg4"
 format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
-
-[time]
-disabled = true
-time_format = "%R" # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
