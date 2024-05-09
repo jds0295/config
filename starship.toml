@@ -53,7 +53,7 @@ disabled = true
 disabled = true
 
 [hostname]
-format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+format = '[$ssh_symbol](fg:bold blue bg:color_bg1)[$hostname](fg:bold red bg:color_bg1)'
 ssh_only = true
 detect_env_vars = ['SSH_CONNECTION']
 
