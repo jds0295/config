@@ -12,9 +12,6 @@ $git_branch\
 $git_status\
 [](fg:color_bg3 bg:color_bg4)\
 $all\
-$nodejs\
-$rust\
-$golang\
 [](fg:color_bg4 bg:color_bg5)\
 ${custom.tmux}\
 [](fg:color_bg5)\
@@ -42,7 +39,7 @@ red = '#f38ba8'
 yellow = "#f9e2af"
 green = "#a6e3a1"
 blue = "#89b4fa"
-color_white = '#e3e5e5'
+maroon = "#eba0ac"
 
 [line_break]
 disabled = true
@@ -96,6 +93,31 @@ style = "fg:bold green bg:color_bg5"
 symbol = ""
 when = '''test -n "$TMUX" '''
 
+[docker_context]
+symbol = "󰡨"
+style = "bg:color_bg4"
+format = '[[ $symbol](fg:bold blue bg:color_bg4)]($style)'
+# format = '[[ $symbol ($context) ](fg:bold blue bg:color_bg4)]($style)'
+
+[package]
+style = "bg:color_bg4"
+format = '[ $version](bg:color_bg4 fg:208 bold)'
+
+[golang]
+symbol = ""
+style = "bg:color_bg4"
+format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
+
+[java]
+symbol = ""
+style = "bg:color_bg4"
+format = '[[ $symbol ($version) ](fg:red bg:color_bg4)]($style)'
+
+[lua]
+symbol = ""
+style = "bg:color_bg4"
+format = '[[ $symbol ($version) ](fg:bold blue bg:color_bg4)]($style)'
+
 [nodejs]
 symbol = ""
 style = "bg:color_bg4"
@@ -104,9 +126,10 @@ format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
 [rust]
 symbol = ""
 style = "bg:color_bg4"
-format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
+format = '[[ $symbol ($version) ](fg:maroon bg:color_bg4)]($style)'
 
-[golang]
-symbol = ""
+[terraform]
+symbol = "󱁢"
 style = "bg:color_bg4"
-format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
+format = '[[ $symbol ($version) ](fg:bold blue bg:color_bg4)]($style)'
+
