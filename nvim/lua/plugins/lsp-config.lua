@@ -13,6 +13,7 @@ return {
 					"lua_ls",
 					"gopls",
 					"groovyls",
+					"spectral", -- yaml, json
 				}
 			})
 		end
@@ -50,6 +51,10 @@ return {
 			}
 			lspconfig.groovyls.setup {
 				capabilities = capabilities,
+			}
+			lspconfig.spectral.setup {
+				capabilities = capabilities,
+				filetypes = {"yaml", "yml"}
 			}
 
 			-- require('lspconfig')['gopls'].setup {}
