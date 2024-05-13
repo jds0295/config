@@ -14,6 +14,7 @@ return {
 					"gopls",
 					"groovyls",
 					"spectral", -- yaml, json
+					"eslint", -- js, ts
 				}
 			})
 		end
@@ -55,6 +56,9 @@ return {
 			lspconfig.spectral.setup {
 				capabilities = capabilities,
 				filetypes = {"yaml", "yml"}
+			}
+			lspconfig.eslint.setup {
+				capabilities = capabilities,
 			}
 
 			-- require('lspconfig')['gopls'].setup {}
