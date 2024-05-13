@@ -1,4 +1,4 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+# "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
 [░▒▓](color_bg1)\
@@ -14,7 +14,7 @@ $git_status\
 $all\
 [](fg:color_bg4 bg:color_bg5)\
 ${custom.tmux}\
-[](fg:color_bg5)\
+[ ](fg:color_bg5)\
 """
 
 right_format = """
