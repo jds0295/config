@@ -12,6 +12,7 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"gopls",
+					"rust_analyzer",
 					"groovyls",
 					"spectral", -- yaml, json
 					"eslint", -- js, ts
@@ -39,6 +40,9 @@ return {
 						staticcheck = true,
 					},
 				},
+			}
+			lspconfig.rust_analyzer.setup {
+				capabilities = capabilities,
 			}
 			lspconfig.lua_ls.setup {
 				capabilities = capabilities,
