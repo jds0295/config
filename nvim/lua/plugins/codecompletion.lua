@@ -19,7 +19,7 @@ return {
 					-- { name = 'vsnip' }, -- vsnip (a)
 					{ name = 'luasnip'}, -- luasnip (b)
 					{ name = 'nvim_lsp', keyword_length = 3},
-					{ name = 'nvim_lsp_signature_help' },
+					{ name = 'nvim_lsp_signature_help', keyword_length = 3},
 					{ name = 'path' },
 					{ name = 'buffer',keyword_length = 3 },
 					{ name = 'cmdline',keyword_length = 3 },
@@ -141,7 +141,7 @@ return {
 		config = function()
 			-- specify node binary path
 			vim.g.copilot_node_command = "~/.nvm/versions/node/v20.12.2/bin/node"
-			-- disable copilot by default
+			-- Enable/disable copilot by default
 			vim.g.copilot_enabled = 0
 			-- function to toggle on and off
 			vim.api.nvim_create_user_command("CopilotToggle", function()

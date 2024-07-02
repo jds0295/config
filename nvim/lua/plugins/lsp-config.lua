@@ -12,7 +12,9 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"gopls",
+					"templ",
 					"rust_analyzer",
+					"html",
 					"groovyls",
 					"spectral", -- yaml, json
 					"eslint", -- js, ts
@@ -41,9 +43,22 @@ return {
 					},
 				},
 			}
+			lspconfig.templ.setup {
+				capabilities = capabilities,
+				filetypes = {"templ"},
+			}
 			lspconfig.rust_analyzer.setup {
 				capabilities = capabilities,
 			}
+			lspconfig.html.setup {
+				capabilities = capabilities,
+				filetypes = {"html", "templ"},
+			}
+			lspconfig.tailwindcss.setup({
+				capabilities = capabilities,
+				filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+				init_options = { userLanguages = { templ = "html" } },
+			})
 			lspconfig.lua_ls.setup {
 				capabilities = capabilities,
 				settings = {

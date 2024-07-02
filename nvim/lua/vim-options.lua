@@ -29,3 +29,6 @@ map('t', '<C-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true })
 
 -- alt + c in visual mode to copy to system clipboard
 -- map('v', '<M-c>', '"+y', { noremap = true, silent = true })
+
+-- "Pick up" other files
+vim.filetype.add({ extension = { templ = "templ" } })
