@@ -11,6 +11,10 @@ vim.g.mapleader = " " -- leader key
 vim.opt.termguicolors = true
 
 local map = vim.api.nvim_set_keymap
+
+-- "This unsets the "last search pattern" register by hitting return
+vim.keymap.set('n', '<CR>', ':noh<CR><CR>', { noremap = true, silent = true })
+
 -- map the hjkl keys + ctrl to move between windows in i, n and t modes
 map('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
 map('n', '<C-j>', '<C-w>j', { noremap = true, silent = true })
