@@ -36,3 +36,12 @@ map('t', '<C-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true })
 
 -- "Pick up" other files
 vim.filetype.add({ extension = { templ = "templ" } })
+vim.filetype.add({
+  filename = {
+    ["Jenkinsfile"] = "groovy",
+    ["Jenkinsfile.*"] = "groovy"
+  }
+})
+
+-- treat Jenkinsfiles as groovy
+-- vim.api.nvim_command('autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy')

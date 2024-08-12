@@ -71,6 +71,7 @@ return {
 			}
 			lspconfig.groovyls.setup {
 				capabilities = capabilities,
+				filetypes = {"groovy", "Jenkinsfile"}
 			}
 			lspconfig.spectral.setup {
 				capabilities = capabilities,
@@ -79,7 +80,9 @@ return {
 			lspconfig.eslint.setup {
 				capabilities = capabilities,
 			}
-
+			lspconfig.tsserver.setup {
+				capabilities = capabilities,
+			}
 			-- require('lspconfig')['gopls'].setup {}
 
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true, desc = 'hover' })

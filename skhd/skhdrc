@@ -77,10 +77,10 @@
 # ############################################################### #
 
 # change window focus within space
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - h : yabai -m window --focus west
-alt - l : yabai -m window --focus east
+# alt - j : yabai -m window --focus south
+# alt - k : yabai -m window --focus north
+# alt - h : yabai -m window --focus west
+# alt - l : yabai -m window --focus east
 
 # focus window
 # alt - h : yabai -m window --focus west
@@ -139,7 +139,7 @@ alt - l : yabai -m window --focus east
 
 # toggle window zoom
 # alt - d : yabai -m window --toggle zoom-parent
-alt - f : yabai -m window --toggle zoom-fullscreen
+# alt - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window split type
 # alt - e : yabai -m window --toggle split
