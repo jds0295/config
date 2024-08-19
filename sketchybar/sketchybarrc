@@ -43,7 +43,7 @@ sketchybar --default "${default[@]}"
 # to indicate active and available mission control spaces.
 
 # integration with aerospace
-SPACE_ICONS=("" "󰅭" "󰻞" "4" "5" "6" "7" "8" "9" "10")
+SPACE_ICONS=("" "󰅭" "󰻞" "" "5" "6" "7" "8" "9" "10")
 sketchybar --add event aerospace_workspace_change
 for sid in $(aerospace list-workspaces --all); do
     sketchybar --add item space.$sid left \

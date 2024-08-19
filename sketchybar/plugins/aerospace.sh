@@ -10,5 +10,11 @@ else
     sketchybar --set $NAME background.drawing=off
 fi
 
-# sketchybar --set space.1 icon=2
+not_empty_spaces=$(aerospace list-workspaces --monitor all --empty no)
 
+#don't show the space if it's empty
+if [[ $not_empty_spaces == *"$1"* ]]; then
+    sketchybar --set $NAME drawing=on
+else
+    sketchybar --set $NAME drawing=off
+fi
