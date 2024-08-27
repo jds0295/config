@@ -7,6 +7,7 @@
 !README.md
 !starship.toml
 
+!aerospace/**
 !alacritty/**
 !tmux/**
 !nvim/**

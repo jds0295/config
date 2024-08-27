@@ -21,11 +21,11 @@ return {
 					{ name = 'nvim_lsp', keyword_length = 3},
 					{ name = 'nvim_lsp_signature_help', keyword_length = 3},
 					{ name = 'path' },
-					{ name = 'buffer',keyword_length = 3 },
-					{ name = 'cmdline',keyword_length = 3 },
-					{ name = 'tmux',keyword_length = 3 },
-					{ name = 'spell',keyword_length = 3 },
-					{ name = 'nvim_lua', keyword_length = 3}, -- neovim lua api
+					{ name = 'buffer',keyword_length = 4 },
+					-- { name = 'cmdline',keyword_length = 4 },
+					{ name = 'tmux',keyword_length = 4 },
+					{ name = 'spell',keyword_length = 4 },
+					{ name = 'nvim_lua', keyword_length = 4}, -- neovim lua api
 				},
 				-- formatting
 				formatting = {

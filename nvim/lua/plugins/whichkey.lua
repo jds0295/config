@@ -6,7 +6,7 @@ return {
 
 		local wk = require("which-key")
 
-		-- Register custom key mappings
+		-- Register key names
 		wk.register({
 			["<C-a>"] = { "Increment number under cursor" },
 			["<C-x>"] = { "Decrement number under cursor" },

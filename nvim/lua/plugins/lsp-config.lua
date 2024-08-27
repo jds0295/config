@@ -86,9 +86,11 @@ return {
 			-- require('lspconfig')['gopls'].setup {}
 
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true, desc = 'hover' })
-			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true , desc = 'go to definition' })
+			vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { noremap = true, silent = true , desc = 'go to definition' })
 			vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { noremap = true, silent = true, desc = 'code actions' })
 			vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { noremap = true, silent = true, desc = 'rename (refactor)' })
+			-- vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, { noremap = true, silent = true, desc = 'go to references' })
+			vim.keymap.set('n', '<leader>gr', '<cmd>Telescope lsp_references<CR>', { noremap = true, silent = true, desc = 'go to references' })
 		end
 	}
 }

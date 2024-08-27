@@ -21,6 +21,9 @@ return {
 							-- even more opts
 						}
 					}
+				},
+				defaults = {
+					path_display = { "truncate" },
 				}
 			}
 			-- To get ui-select loaded and working with telescope, you need to call
