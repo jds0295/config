@@ -7,16 +7,16 @@ return {
 		local wk = require("which-key")
 
 		-- Register key names
-		wk.register({
-			["<C-a>"] = { "Increment number under cursor" },
-			["<C-x>"] = { "Decrement number under cursor" },
-			["g<C-a>"] = { "Increment number in visual block mode" },
-			["g<C-x>"] = { "Decrement number in visual block mode" },
+		wk.add({
+			{ "<C-a>", desc = "Increment number under cursor" },
+			{ "<C-x>", desc = "Decrement number under cursor" },
+			{ "g<C-a>", desc = "Increment number in visual block mode" },
+			{ "g<C-x>", desc = "Decrement number in visual block mode" },
 		}, { mode = "n" })  -- Normal mode mappings
 
-		wk.register({
-			["g<C-a>"] = { "Increment number in visual block mode" },
-			["g<C-x>"] = { "Decrement number in visual block mode" },
+		wk.add({
+			{ "g<C-a>", desc = "Increment number in visual block mode" },
+			{ "g<C-x>", desc = "Decrement number in visual block mode" },
 		}, { mode = "v" })  -- Visual mode mappings
 
 		-- Setup which-key

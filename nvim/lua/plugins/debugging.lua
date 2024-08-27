@@ -77,8 +77,10 @@ return {
 		-- 	dapui.close()
 		-- end
 
-		require("which-key").register({
-			["<leader>d"] = { name = "debugging" },
+		require("which-key").add({
+			{
+				"<leader>d", group = "debugging",
+			}
 		})
 
 		vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "open UI" })

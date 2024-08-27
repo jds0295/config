@@ -4,6 +4,7 @@ return {
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function()
 			local builtin = require("telescope.builtin")
+			require("which-key").add({ { "<leader>f", group = "telescope", icon = "󰭎", } })
 			vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'find files'})
 			vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'live grep all files'})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'open buffer names'})
