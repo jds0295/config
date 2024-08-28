@@ -7,11 +7,7 @@ return {
 			cmd = " npm test -- $file",
 		})
 
-		require("which-key").add({
-			{
-				"<leader>j", group = "jest testing", icon = "󰤑",
-			}
-		})
+		require("which-key").add({ { "<leader>j", group = "jest testing", icon = "󰤑", } })
 
 		vim.keymap.set('n', '<leader>jt', jester.run, { desc = 'run nearest'})
 		vim.keymap.set('n', '<leader>jf', jester.run_file, { desc = 'run file'})

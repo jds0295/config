@@ -77,18 +77,14 @@ return {
 		-- 	dapui.close()
 		-- end
 
-		require("which-key").add({
-			{
-				"<leader>d", group = "debugging",
-			}
-		})
+		require("which-key").add({ { "<leader>d", group = "debugging", } })
 
 		vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "open UI" })
 		vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "toggle breakpoint" })
 		vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "continue debugging" })
 		-- vim.keymap.set("n", "<leader>dl", dap.breakpoints, { desc = "list breakpoints" })
 		vim.keymap.set("n", "<F10>", dap.continue, { desc = "continue" })
-		vim.keymap.set("n", "<F11>", dap.step_over, { desc = "step over" })
-		vim.keymap.set("n", "<F12>", dap.step_into, { desc = "step into" })
+		vim.keymap.set("n", "<F11>", dap.step_into, { desc = "step into" })
+		vim.keymap.set("n", "<F12>", dap.step_over, { desc = "step over" })
 	end,
 }
