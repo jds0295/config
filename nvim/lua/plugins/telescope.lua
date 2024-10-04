@@ -10,6 +10,7 @@ return {
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'open buffer names'})
 			vim.keymap.set('n', '<leader>fc', builtin.current_buffer_fuzzy_find, { desc = 'fzf current buffer'})
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'fzf help'})
+			vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'diagnostics'})
 		end
 	},
 	{
@@ -24,7 +25,7 @@ return {
 					}
 				},
 				defaults = {
-					path_display = { "truncate" },
+					path_display = { "smart" },
 				}
 			}
 			-- To get ui-select loaded and working with telescope, you need to call

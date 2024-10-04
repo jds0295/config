@@ -109,6 +109,11 @@ symbol = ""
 style = "bg:color_bg4"
 format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
 
+[helm]
+symbol = "󰠳"
+style = "bg:color_bg4"
+format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
+
 [java]
 symbol = ""
 style = "bg:color_bg4"
