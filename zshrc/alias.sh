@@ -30,6 +30,7 @@ alias sz="source ~/.zshrc"
 alias shad="ssh-add ~/.ssh/twgbitbucket"
 alias t="tmux"
 alias ta="tmux attach"
+alias tf="terraform"
 alias xx="exit"
 alias :q="exit"
 
