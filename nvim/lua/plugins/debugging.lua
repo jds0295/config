@@ -60,15 +60,15 @@ return {
         type = "pwa-node",
         request = "attach",
         name = "Attach",
+        processId = require("dap.utils").pick_process,
         -- program = "${file}",
         -- adapters = { 'pwa-node', 'node-terminal' }, -- which adapters to register in nvim-dap
         -- address = "127.0.0.1",
         -- port = "9229",
-        skipFiles = { "<node_internals>/**", "node_modules/**" },
-        processId = require("dap.utils").pick_process,
-        cwd = vim.fn.getcwd() .. "/packages/backend",
+        -- skipFiles = { "<node_internals>/**", "node_modules/**" },
+        -- cwd = vim.fn.getcwd() .. "/packages/backend",
         -- cwd = "${workspaceFolder}/packages/backend",
-        sourceMaps = true,
+        -- sourceMaps = true,
       },
       -- Divider for the launch.json derived configs
       {
@@ -76,14 +76,7 @@ return {
         type = "",
         request = "launch",
       },
-      -- function()
-      -- 	if vim.fn.filereadable(".vscode/launch.json") then
-      -- 		local dap_vscode = require("dap.ext.vscode")
-      -- 		dap_vscode.load_launchjs(nil, {
-      -- 			["pwa-node"] = "typescript",
-      -- 		})
-      -- 	end
-      -- end,
+      	require("dap.ext.vscode").load_launchjs(nil, nil)
     }
 
     -- go debugging

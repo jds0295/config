@@ -4,7 +4,7 @@ return {
 		local jester = require("jester")
 
 		jester.setup({
-			cmd = " npm test -- $file",
+			-- cmd = " npm test -- $file",
 			terminal_cmd = ":split | terminal",
 			dap = {
 				type = "pwa-node",

@@ -104,6 +104,9 @@ format = '[[ $symbol](fg:bold blue bg:color_bg4)]($style)'
 style = "bg:color_bg4"
 format = '[ $version](bg:color_bg4 fg:208 bold)'
 
+[aws]
+disabled = true
+
 [golang]
 symbol = ""
 style = "bg:color_bg4"
@@ -118,6 +121,12 @@ format = '[[ $symbol ($version) ](fg:color_fg4 bg:color_bg4)]($style)'
 symbol = ""
 style = "bg:color_bg4"
 format = '[[ $symbol ($version) ](fg:red bg:color_bg4)]($style)'
+
+[kubernetes]
+# format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
+disabled = true
+detect_files = ['k8s']
+symbol = "󰠳"
 
 [lua]
 symbol = ""

@@ -12,34 +12,21 @@
                                     "key_code": "caps_lock",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
-                                "to_delayed_action": { "to_if_canceled": [{ "key_code": "escape" }] },
-                                "to_if_alone": [
-                                    {
-                                        "halt": true,
-                                        "key_code": "escape"
-                                    }
-                                ],
-                                "to_if_held_down": [
-                                    {
-                                        "halt": true,
-                                        "key_code": "left_control",
-                                        "repeat": true
-                                    }
-                                ],
+                                "to": [{ "key_code": "right_control" }],
+                                "to_if_alone": [{ "key_code": "escape" }],
                                 "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "Home row to ctrl, shift, alt, cmd",
+                        "description": "Home row - left to ctrl, alt, shift, cmd",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "a",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
+                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 150 },
                                 "to_delayed_action": { "to_if_canceled": [{ "key_code": "a" }] },
                                 "to_if_alone": [
                                     {
@@ -60,7 +47,7 @@
                                     "key_code": "s",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
+                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 150 },
                                 "to_delayed_action": { "to_if_canceled": [{ "key_code": "s" }] },
                                 "to_if_alone": [
                                     {
@@ -81,7 +68,7 @@
                                     "key_code": "d",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
+                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 150 },
                                 "to_delayed_action": { "to_if_canceled": [{ "key_code": "d" }] },
                                 "to_if_alone": [
                                     {
@@ -102,7 +89,7 @@
                                     "key_code": "f",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
+                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 150 },
                                 "to_delayed_action": { "to_if_canceled": [{ "key_code": "f" }] },
                                 "to_if_alone": [
                                     {
@@ -117,13 +104,19 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Home row - right to ctrl, alt, shift, cmd",
+                        "enabled": false,
+                        "manipulators": [
                             {
                                 "from": {
                                     "key_code": "semicolon",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
+                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 150 },
                                 "to_delayed_action": { "to_if_canceled": [{ "key_code": "semicolon" }] },
                                 "to_if_alone": [
                                     {
@@ -144,7 +137,7 @@
                                     "key_code": "l",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
+                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 150 },
                                 "to_delayed_action": { "to_if_canceled": [{ "key_code": "l" }] },
                                 "to_if_alone": [
                                     {
@@ -165,7 +158,7 @@
                                     "key_code": "k",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
+                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 150 },
                                 "to_delayed_action": { "to_if_canceled": [{ "key_code": "k" }] },
                                 "to_if_alone": [
                                     {
@@ -186,7 +179,7 @@
                                     "key_code": "j",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
+                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 150 },
                                 "to_delayed_action": { "to_if_canceled": [{ "key_code": "j" }] },
                                 "to_if_alone": [
                                     {
@@ -202,7 +195,6 @@
                                 ],
                                 "type": "basic"
                             }
-
                         ]
                     }
                 ]
