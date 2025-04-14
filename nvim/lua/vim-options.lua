@@ -4,6 +4,7 @@ vim.cmd "set nu rnu" -- line numbers + relative
 vim.cmd "set scrolloff=5" -- always see x lines above or below cursor
 vim.cmd "set nowrap" -- no text wrapping
 vim.cmd "set clipboard=unnamedplus" -- system clipboard is synced with standard yank / paster operations
+vim.cmd "set noswapfile"
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_gb' }
 vim.g.mapleader = " " -- leader key

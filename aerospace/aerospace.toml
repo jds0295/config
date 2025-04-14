@@ -50,7 +50,7 @@ inner.horizontal = 2
 inner.vertical =   2
 outer.left =       2
 outer.bottom =     2
-outer.top =        [{ monitor.'built-in' = 0 }, { monitor.main = 24 }, { monitor.'^(?!.*\bmain\b).*' = 0 }, 0]
+outer.top =        [{ monitor.'built-in' = 0 }, { monitor.main = 0 }, { monitor.'^(?!.*\bmain\b).*' = 24 }, 0]
 outer.right =      2
 
 # 'main' binding mode declaration

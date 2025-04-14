@@ -20,6 +20,7 @@
                     },
                     {
                         "description": "Home row - left to ctrl, alt, shift, cmd",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {

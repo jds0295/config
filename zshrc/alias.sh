@@ -38,3 +38,6 @@ b64() {
  echo $1 | base64 -d
 }
 
+retag() {
+	git tag --delete $1 && git tag $1 && git push --delete origin $1 && git push origin $1
+}

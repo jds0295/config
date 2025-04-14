@@ -20,6 +20,7 @@ return {
 					"spectral", -- yaml, json
 					"eslint", -- js, ts
 					"ts_ls", -- typescript
+					"jdtls", -- java
 				},
 			})
 		end,

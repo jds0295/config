@@ -44,6 +44,41 @@ return {
     --   -- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
     -- })
 
+    dap.configurations.javascript = {
+      -- Debug single nodejs files
+      {
+        type = "pwa-node",
+        request = "launch",
+        name = "Launch file",
+        program = "${file}",
+        cwd = vim.fn.getcwd(),
+        -- cwd = "${workspaceFolder}",
+        sourceMaps = false,
+      },
+      -- Debug nodejs processes (make sure to add --inspect when you run the process)
+      {
+        type = "pwa-node",
+        request = "attach",
+        name = "Attach",
+        processId = require("dap.utils").pick_process,
+        -- program = "${file}",
+        -- adapters = { 'pwa-node', 'node-terminal' }, -- which adapters to register in nvim-dap
+        -- address = "127.0.0.1",
+        -- port = "9229",
+        -- skipFiles = { "<node_internals>/**", "node_modules/**" },
+        -- cwd = vim.fn.getcwd() .. "/packages/backend",
+        -- cwd = "${workspaceFolder}/packages/backend",
+        -- sourceMaps = true,
+      },
+      -- Divider for the launch.json derived configs
+      {
+        name = "----- ↓ launch.json configs ↓ -----",
+        type = "",
+        request = "launch",
+      },
+      	require("dap.ext.vscode").load_launchjs(nil, nil)
+    }
+
     dap.configurations.typescript = {
       -- Debug single nodejs files
       {
