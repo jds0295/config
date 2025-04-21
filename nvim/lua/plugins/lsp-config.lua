@@ -70,6 +70,27 @@ return {
 			local util = require("lspconfig/util")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+			vim.diagnostic.config({
+				virtual_text = true, -- shows inline errors/warnings as text (like ghost text next to the line
+				underline = true, -- underlines problematic code
+				update_in_insert = false, -- don't update diagnostics *while* typing (less noisy, more performant)
+				severity_sort = true, -- sort diagnostics by severity, so most important shows first
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = "",
+						[vim.diagnostic.severity.WARN] = "",
+						[vim.diagnostic.severity.INFO] = "",
+						[vim.diagnostic.severity.HINT] = "",
+					},
+					numhl = {
+						[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+						[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+						[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+						[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+					},
+				},
+			})
+
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
 				cmd = { "gopls", "serve" },
@@ -127,15 +148,48 @@ return {
 			lspconfig.kotlin_language_server.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.ccls.setup({
+				capabilities = capabilities,
+				filetypes = { "m", "objc" },
+				init_options = {
+					cache = {
+						directory = ".ccls-cache",
+					},
+				},
+			})
 			-- require('lspconfig')['gopls'].setup {}
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true, silent = true, desc = "hover" })
-			vim.keymap.set( "n", "<leader>gd", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "go to definition" })
+			vim.keymap.set(
+				"n",
+				"<leader>gd",
+				vim.lsp.buf.definition,
+				{ noremap = true, silent = true, desc = "go to definition" }
+			)
 			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, { desc = "format document" })
-			vim.keymap.set( { "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { noremap = true, silent = true, desc = "code actions" })
-			vim.keymap.set( "n", "<leader>rn", vim.lsp.buf.rename, { noremap = true, silent = true, desc = "rename (refactor)" })
+			vim.keymap.set(
+				{ "n", "v" },
+				"<leader>ca",
+				vim.lsp.buf.code_action,
+				{ noremap = true, silent = true, desc = "code actions" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>rn",
+				vim.lsp.buf.rename,
+				{ noremap = true, silent = true, desc = "rename (refactor)" }
+			)
 			-- vim.keymap.set('n', '<leader>gr', vim.lsp.buf.implementation, { noremap = true, silent = true, desc = 'go to references' })
-			vim.keymap.set( "n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true, desc = "go to references" })
+			vim.keymap.set(
+				"n",
+				"<leader>gr",
+				"<cmd>Telescope lsp_references<CR>",
+				{ noremap = true, silent = true, desc = "go to references" }
+			)
+			vim.keymap.set("n", "<leader>gv", function()
+				local current = vim.diagnostic.config().virtual_text
+				vim.diagnostic.config({ virtual_text = not current })
+			end, { noremap = true, silent = true, desc = "Toggle virtual text diagnostics" })
 		end,
 	},
 }
