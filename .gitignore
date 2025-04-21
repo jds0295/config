@@ -1,6 +1,5 @@
 # ignore all by default
 *
-!*/
 
 # explicitly include
 !.gitignore
