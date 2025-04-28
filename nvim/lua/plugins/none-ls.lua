@@ -13,6 +13,10 @@ return {
 				null_ls.builtins.formatting.prettierd,
 				require("none-ls.formatting.jq"), -- requires none-ls-extras.nvim
 				-- require("none-ls.diagnostics.eslint"),
+				-- null_ls.builtins.diagnostics.clang_check.with({
+				-- 	command = "monkeyc",
+				-- 	args = { "-z", "-f", "$FILENAME" },
+				-- }),
 			},
 		})
 	end,

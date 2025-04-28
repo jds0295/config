@@ -145,6 +145,9 @@ return {
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.svelte.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.kotlin_language_server.setup({
 				capabilities = capabilities,
 			})
