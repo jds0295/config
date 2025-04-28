@@ -70,6 +70,24 @@ return {
 			local util = require("lspconfig/util")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+			local border = {
+				{ ".", "FloatBorder" }, -- tl corner
+				{ "", "FloatBorder" },
+				{ ".", "FloatBorder" },
+				{ "", "FloatBorder" }, -- right vertical
+				{ ".", "FloatBorder" },
+				{ "", "FloatBorder" },
+				{ ".", "FloatBorder" },
+				{ "", "FloatBorder" }, -- left vertical
+			}
+
+			local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+			function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+				opts = opts or {}
+				opts.border = opts.border or border
+				return orig_util_open_floating_preview(contents, syntax, opts, ...)
+			end
+
 			vim.diagnostic.config({
 				virtual_text = true, -- shows inline errors/warnings as text (like ghost text next to the line
 				underline = true, -- underlines problematic code
