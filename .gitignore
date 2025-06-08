@@ -10,6 +10,7 @@
 !aerospace/**
 !alacritty/**
 !tmux/**
+!nixos/**
 !nvim/**
 !yabai/**
 !skhd/**
