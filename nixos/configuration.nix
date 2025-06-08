@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./keyremap.nix
+			./displaylink.nix
     ];
 
   # Bootloader.
@@ -121,7 +122,9 @@
     git
     neovim
     starship
+		thefuck
     tmux
+		usbutils
     vim
   ];
 
