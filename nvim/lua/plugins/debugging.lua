@@ -15,7 +15,7 @@ return {
     "leoluz/nvim-dap-go",      -- golang
   },
   config = function()
-    local js_debug_path = require("mason-registry").get_package("js-debug-adapter"):get_install_path() .. "js-debug-adapter"
+    -- local js_debug_path = require("mason-registry").get_package("js-debug-adapter"):get_install_path() .. "js-debug-adapter"
     local dap, dapui = require("dap"), require("dapui")
     dapui.setup()
     require("nvim-dap-virtual-text").setup()

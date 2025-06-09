@@ -99,6 +99,8 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  programs.nix-ld.enable = true;
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -117,16 +119,30 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alacritty
+    corepack
     displaylink 
     fastfetch
+    gcc
     git
+    go
     neovim
+    nodejs_22
+    openjdk21
     starship
-		thefuck
+    thefuck
     tmux
-		usbutils
+    unzip
+    usbutils
     vim
+    yarn
   ];
+
+  environment.variables = {
+    JAVA_HOME = "${pkgs.openjdk21}";
+    GOROOT = "${pkgs.go}";
+    GOPATH = "$HOME/go";
+    PATH = [ "$HOME/go/bin" ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
