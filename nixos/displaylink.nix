@@ -29,7 +29,8 @@ in
         MatchDriver "evdi"
         Driver      "modesetting"
         Option      "TearFree" "true"
-        Option      "AccelMethod" "none"
+        Option      "AccelMethod" "glamor"
+        Option      "DRI" "3"
       EndSection
     '';
 
@@ -75,5 +76,4 @@ in
     };
 
   };
-
 }
