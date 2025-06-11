@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./displaylink.nix
       ./hardware-configuration.nix
+      ./hyprland.nix
       ./keyremap.nix
       ./nvidia.nix
     ];
