@@ -13,6 +13,8 @@
       ./nvidia.nix
     ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -133,13 +135,14 @@
     go
     neovim
     nodejs_22
+    ntfs3g # read ntfs formatted drives
     openjdk21
     python3
     starship
     thefuck
     tmux
     unzip
-    usbutils
+    usbutils # was to check the status of attached usb devices
     vim
     yarn
   ];
@@ -160,6 +163,9 @@
   # };
 
   # List services that you want to enable:
+
+  # this is for the displaylink dock monitors to work
+  services.xserver.videoDrivers = ["displaylink" "modesetting"];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
