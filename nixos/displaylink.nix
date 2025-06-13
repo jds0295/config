@@ -34,6 +34,10 @@ in
       EndSection
     '';
 
+    # this is for the displaylink dock monitors to work
+    # dont know if i need this 
+    services.xserver.videoDrivers = ["displaylink" "modesetting"];
+
     # make the device available
     services.xserver.displayManager.sessionCommands = ''
       ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0

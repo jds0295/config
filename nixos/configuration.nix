@@ -7,12 +7,22 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./displaylink.nix
+      # ./displaylink.nix
       ./hardware-configuration.nix
       ./hyprland.nix
       ./keyremap.nix
       ./nvidia.nix
     ];
+
+nixpkgs.overlays = [
+  (final: prev: {
+    input-leap = prev.input-leap.overrideAttrs (old: {
+      patches = (old.patches or []) ++ [
+        (final.writeText "input-leap-qt6-fix.patch" (builtins.readFile ./patches/input-leap-qt6-fix.patch))
+      ];
+    });
+  })
+];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -134,11 +144,13 @@
     gcc
     git
     go
+    input-leap
     neovim
     nodejs_22
     ntfs3g # read ntfs formatted drives
     openjdk21
     python3
+    pywal
     starship
     thefuck
     tmux
@@ -146,7 +158,28 @@
     usbutils # was to check the status of attached usb devices
     vim
     yarn
+    # xdg-desktop-portal ## for input leap
+    # xdg-desktop-portal-gtk ## for input leap
+    xdg-desktop-portal-hyprland ## for input leap
+    # xdg-desktop-portal-wlr ## for input leap
   ];
+  
+  # input leap to work
+  xdg = {
+    portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      config = {
+        common.default = ["gtk"];
+        hyprland.default = ["gtk" "hyprland"];
+      };
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-gnome
+      ];
+    };
+  };
 
   environment.variables = {
     JAVA_HOME = "${pkgs.openjdk21}";
@@ -165,14 +198,11 @@
 
   # List services that you want to enable:
 
-  # this is for the displaylink dock monitors to work
-  services.xserver.videoDrivers = ["displaylink" "modesetting"];
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 22 24800 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
