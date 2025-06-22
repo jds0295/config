@@ -4,7 +4,10 @@ return {
 	config = function()
 		require("lualine").setup {
 			options = {
-				theme = 'dracula',
+				-- theme = 'dracula',
+				-- theme = 'ayu_mirage',
+				-- theme = 'iceberg_dark',
+				theme = 'pywal',
 				globalstatus = true,
 			},
 			sections = {
@@ -18,10 +21,10 @@ return {
 							local status
 							if vim.g.copilot_enabled == 1 then
 								status = vim.fn.execute("Copilot status"):match('Copilot: (%w+)')
-								return "%#Blue# " .. status
+								return " " .. status
 							else
 								status = "off"
-								return "%#Red# " .. status
+								return " " .. status
 							end
 						end
 					},
@@ -36,9 +39,9 @@ return {
 					{
 						function()
 							if CMP_ENABLED then
-								return "⎁ " .. "%#Green#%#lualine_c_normal#"
+								return "⎁ " .. ""
 							else
-								return "⎁ " .. "%#Red#%#lualine_c_normal#"
+								return "⎁ " .. ""
 							end
 						end
 					}
@@ -60,12 +63,12 @@ return {
 			}
 		}
 		local hl_c = vim.api.nvim_get_hl_by_name('lualine_c_normal', true)
-		local hl_red = vim.api.nvim_get_hl_by_name('RainbowDelimiterRed', true)
-		local hl_green = vim.api.nvim_get_hl_by_name('RainbowDelimiterGreen', true)
-		local hl_blue = vim.api.nvim_get_hl_by_name('RainbowDelimiterBlue', true)
-		vim.api.nvim_set_hl(0, 'Red', {foreground = hl_red.foreground, background = hl_c.background})
-		vim.api.nvim_set_hl(0, 'Green', {foreground = hl_green.foreground, background = hl_c.background})
-		vim.api.nvim_set_hl(0, 'Blue', {foreground = hl_blue.foreground, background = hl_c.background})
+		-- local hl_red = vim.api.nvim_get_hl_by_name('RainbowDelimiterRed', true)
+		-- local hl_green = vim.api.nvim_get_hl_by_name('RainbowDelimiterGreen', true)
+		-- local hl_blue = vim.api.nvim_get_hl_by_name('RainbowDelimiterBlue', true)
+		-- vim.api.nvim_set_hl(0, 'Red', {foreground = hl_red.foreground, background = hl_c.background})
+		-- vim.api.nvim_set_hl(0, 'Green', {foreground = hl_green.foreground, background = hl_c.background})
+		-- vim.api.nvim_set_hl(0, 'Blue', {foreground = hl_blue.foreground, background = hl_c.background})
 		-- vim.api.nvim_set_hl(0, 'Red', {foreground = 0xFF0000, background = hl_c.background})
 		-- vim.api.nvim_set_hl(0, 'Green', {foreground = 0x00FF00, background = hl_c.background})
 		-- vim.api.nvim_set_hl(0, 'Blue', {foreground = 0x0000FF, background = hl_c.background})
