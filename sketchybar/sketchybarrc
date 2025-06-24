@@ -16,7 +16,7 @@ sketchybar --hotload true
 
 sketchybar --bar \
 	position=top \
-	height=25 \
+	height=30 \
 	blur_radius=30 \
 	color=0xFF1D2951
 

@@ -71,14 +71,14 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local border = {
-				{ ".", "FloatBorder" }, -- tl corner
-				{ "", "FloatBorder" },
-				{ ".", "FloatBorder" },
-				{ "", "FloatBorder" }, -- right vertical
-				{ ".", "FloatBorder" },
-				{ "", "FloatBorder" },
-				{ ".", "FloatBorder" },
-				{ "", "FloatBorder" }, -- left vertical
+				{ "╭", "FloatBorder" }, -- tl corner
+				{ "─", "FloatBorder" }, -- top
+				{ "╮", "FloatBorder" }, -- top right
+				{ "│", "FloatBorder" }, -- right vertical
+				{ "╯", "FloatBorder" }, -- bottom right
+				{ "─", "FloatBorder" }, -- bottom
+				{ "╰", "FloatBorder" }, -- bottom left
+				{ "│", "FloatBorder" }, -- left vertical
 			}
 
 			local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -169,6 +169,20 @@ return {
 			lspconfig.kotlin_language_server.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.pylsp.setup({
+				capabilities = capabilities,
+			})
+			-- lspconfig.ansiblels.setup({
+			-- 	capabilities = capabilities,
+			-- 	filetypes = { "yaml" },
+			-- 	settings = {
+			-- 		ansible = {
+			-- 			validation = {
+			-- 				enabled = true,
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
 			lspconfig.ccls.setup({
 				capabilities = capabilities,
 				filetypes = { "m", "objc" },

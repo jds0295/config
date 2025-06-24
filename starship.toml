@@ -1,7 +1,8 @@
 # "$schema" = 'https://starship.rs/config-schema.json'
 
+# [░▒▓](color_bg1)\
 format = """
-[░▒▓](color_bg1)\
+[█](color_bg1_30)[█](color_bg1_60)[█](color_bg1_99)\
 $hostname\
 $username\
 [$shell](fg:color_fg1 bg:color_bg1)\
@@ -22,6 +23,7 @@ $cmd_duration\
 """
 
 add_newline = false
+scan_timeout = 1
 command_timeout =  700
 palette = 'pywal'
 
@@ -44,6 +46,9 @@ palette = 'pywal'
 
 [palettes.jds_cat]
 color_bg1 = '#313244'
+color_bg1_30    = '#2A2B31'
+color_bg1_60    = '#2E2E3A'
+color_bg1_99    = '#313244'
 color_bg2 = '#45475a'
 color_bg3 = '#585b70'
 color_bg4 = '#6c7086'
@@ -102,7 +107,7 @@ truncation_symbol = "…/"
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
-"Developer" = "󰲋 "
+"Developer" = ""
 
 [git_branch]
 symbol = ""
@@ -126,6 +131,10 @@ pure_msg = '[pure shell](bold green $style)'
 unknown_msg = '[unknown shell](bold yellow $style)'
 format = '[$symbol $state( \($name\))](bold blue $style) '
 # format = '[[$symbol$state](fg:color_fg4 bg:color_bg4)]($style)'
+
+[[battery.display]]
+style = "bold red bg:color_bg4"
+threshold = 10
 
 [docker_context]
 symbol = "󰡨"

@@ -2,9 +2,9 @@
 # ZSH_THEME="dracula"
 
 plugins=(
-	git
-	kubectl
-	zsh-autosuggestions
+	# git
+	# kubectl
+	# zsh-autosuggestions
 	# fast-syntax-highlighting
-	zsh-autocomplete
+	# zsh-autocomplete
 )

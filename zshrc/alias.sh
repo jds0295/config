@@ -27,12 +27,23 @@ alias pcu="podman-compose up -d"
 alias pcd="podman-compose down"
 alias pcr="podman-compose down; podman-compose up -d"
 alias sz="source ~/.zshrc"
+alias sed="gsed"
 alias shad="ssh-add ~/.ssh/twgbitbucket"
 alias t="tmux"
 alias ta="tmux attach"
 alias tf="terraform"
 alias xx="exit"
+# alias z="zoxide"
 alias :q="exit"
+
+y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 b64() {
  echo $1 | base64 -d
