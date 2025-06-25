@@ -1,0 +1,26 @@
+
+[palettes.pywal]
+color_bg1 = '{color15}'
+color_bg2 = '{color1}'
+color_bg3 = '{color2}'
+color_bg4 = '{color3}'
+color_bg5 = '{color4}'
+color_fg1 = '{color5}' #host / user
+color_fg2 = '{color6}' #directory
+color_fg3 = '{color7}' #git
+color_fg4 = '{color8}' #dir specific e.g go / node/ rust
+color_fg5 = '{color9}'
+color_10 = '{color10}'
+color_11 = '{color11}'
+color_12 = '{color12}'
+color_13 = '{color13}'
+color_14 = '{color14}'
+color_15 = '{color15}'
+color_foreground = '{foreground}' #unused
+color_background = '{background}' #unused
+color_cursor = '{cursor}' #unused
+red = '#f38ba8'
+yellow = "#f9e2af"
+green = "#a6e3a1"
+blue = "#89b4fa"
+maroon = "#eba0ac"
