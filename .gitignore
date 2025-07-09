@@ -18,6 +18,7 @@
 !skhd/**
 !tmux/**
 !wal/templates/**
+!waybar/**
 !yabai/**
 !zshrc/**
 
