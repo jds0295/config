@@ -19,6 +19,7 @@
 !tmux/**
 !wal/templates/**
 !waybar/**
+!wofi/**
 !yabai/**
 !zshrc/**
 

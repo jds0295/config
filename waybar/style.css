@@ -1,0 +1,152 @@
+/* @import "~/.cache/wal/colors-waybar.css"; */
+@import "/home/james/.cache/wal/colors-waybar.css";
+@define-color background #131721;
+
+* {
+  font-size: 12px;
+  font-family: JetBrainsMono Nerd Font, Font Awesome, sans-serif;
+  font-weight: bold;
+}
+window#waybar {
+  background-color: rgba(26,27,38,0);
+  border-bottom: 0px solid rgba(26,27,38,0);
+  border-radius: 0px;
+  /* color: #E6B673; */
+  color: @color13;
+}
+/* --- Workspaces --- */
+#workspaces {
+  /* background: linear-gradient(45deg, #131721, #131721); */
+  background: linear-gradient(45deg, @background, @background);
+  margin-top: 1px;
+  padding: 0px 0px;
+  border-radius: 15px;
+  border: 0px;
+  font-style: normal;
+  color: @color0;
+}
+#workspaces button {
+  padding: 0px 5px;
+  margin: 4px 3px;
+  border-radius: 15px;
+  border: 0px;
+  color: @cursor;
+  background: linear-gradient(45deg, @color1, @color2);
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+#workspaces button.active {
+  /* padding: 0px 5px; */
+  /* margin: 4px 3px; */
+  /* border-radius: 15px; */
+  /* border: 0px; */
+  color: @color15;
+  background: linear-gradient(45deg, @color10, @color11);
+  opacity: 1.0;
+  min-width: 40px;
+  transition: all 0.3s ease-in-out;
+}
+#workspaces button:hover {
+  /* border-radius: 15px; */
+  color: @color0; /*text color*/
+  background: linear-gradient(45deg, @color13, @color14);
+  /* opacity: 0.8; */
+  opacity: 1.0;
+}
+/* --- Tooltip --- */
+tooltip {
+  background: @background;
+  border: 1px solid @color14;
+  border-radius: 10px;
+}
+tooltip label {
+  color: @foreground;
+}
+/* --- Modules --- */
+#window,
+#memory,
+#cpu,
+#disk,
+#battery,
+#network,
+#tray,
+#pulseaudio,
+#custom-notification,
+#custom-startmenu,
+#custom-exit,
+#idle_inhibitor,
+#clock {
+  margin: 5px;
+  padding: 2px 20px;
+}
+#window {
+  color: #E6E1CF;
+  /* background: #131721; */
+  background: @background;
+  border-radius: 50px 15px 50px 15px;
+}
+#memory {
+  color: @color12;
+  /* background: #131721; */
+  background: @background;
+  border-radius: 15px 50px 15px 50px;
+}
+#cpu {
+  color: @color10;
+  background: @background;
+  border-radius: 50px 15px 50px 15px;
+}
+#disk {
+  color: @color11;
+  background: @background;
+  border-radius: 15px 50px 15px 50px;
+}
+#battery {
+  color: #F07178;
+  background: #0F1419;
+  border-radius: 15px 50px 15px 50px;
+}
+#network {
+  color: @color12;
+  background: @background;
+  border-radius: 50px 15px 50px 15px;
+}
+#tray {
+  color: @color4;
+  background: @background;
+  border-radius: 15px 50px 15px 50px;
+}
+#pulseaudio {
+  color: @color13;
+  background: @background;
+  border-radius: 50px 15px 50px 15px;
+  margin: 4px;
+}
+#custom-notification {
+  color: #95E6CB;
+  background: #0F1419;
+  border-radius: 15px 50px 15px 50px;
+}
+#custom-startmenu {
+  color: @color9;
+  background: @background;
+  border-radius: 0px 15px 50px 0px;
+  margin: 5px 5px 5px 0px;
+}
+#custom-exit {
+  color: @color9;
+  background: @background;
+  border-radius: 15px 0px 0px 50px;
+  margin: 5px 0px 5px 5px;
+}
+#idle_inhibitor {
+  color: @color7;
+  background: @background;
+  border-radius: 15px 50px 15px 50px;
+}
+#clock {
+  color: @color14;
+  background: @background;
+  border-radius: 15px 50px 15px 50px;
+}
+

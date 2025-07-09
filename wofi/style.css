@@ -1,0 +1,58 @@
+@import "/home/james/.cache/wal/colors-waybar.css";
+
+window {
+margin: 0px;
+border: 2px solid @color1;
+border-radius: 15px;
+background-color: @background;
+}
+
+#input {
+margin: 5px;
+border: none;
+color: @cursor;
+border-radius: 15px;
+background-color: #44475a;
+}
+
+#inner-box {
+margin: 5px;
+border: none;
+border-radius: 15px;
+background-color: @background;
+}
+
+#outer-box {
+margin: 5px;
+border: none;
+border-radius: 15px;
+background-color: @background;
+}
+
+#scroll {
+margin: 0px;
+border: none;
+border-radius: 15px;
+}
+
+#text {
+margin: 5px;
+border: none;
+color: @cursor;
+} 
+
+#entry.activatable #text {
+color: @background;
+}
+
+#entry > * {
+color: @cursor;
+}
+
+#entry:selected {
+background-color: #44475a;
+}
+
+#entry:selected #text {
+font-weight: bold;
+}
