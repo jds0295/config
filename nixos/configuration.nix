@@ -7,28 +7,46 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      # ./displaylink.nix
       ./hardware-configuration.nix
-      ./hyprland.nix
       ./keyremap.nix
-      ./nvidia.nix
     ];
-
-nixpkgs.overlays = [
-  (final: prev: {
-    input-leap = prev.input-leap.overrideAttrs (old: {
-      patches = (old.patches or []) ++ [
-        (final.writeText "input-leap-qt6-fix.patch" (builtins.readFile ./patches/input-leap-qt6-fix.patch))
-      ];
-    });
-  })
-];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # sdb2 - Red exFAT
+  fileSystems."/mnt/red" = {
+    device = "/dev/disk/by-uuid/670F-0F02";
+    fsType = "exfat";
+    options = [ "uid=1000" "gid=100" "umask=0022" "x-gvfs-show" ];
+    # options = [ "fmask=0077" "dmask=0077" ];
+    neededForBoot = false;
+  };
+
+  # sdc2 - NTFS 2TB Games
+  fileSystems."/mnt/2tb-games" = {
+    device = "/dev/disk/by-uuid/08C441E6C441D69A";
+    fsType = "ntfs";
+    options = [ "rw" "uid=1000" "gid=100" "dmask=027" "fmask=137" ];
+    neededForBoot = false;
+  };
+
+  # sdd2 - exFAT 2TB Media
+  fileSystems."/mnt/2tb-media" = {
+    device = "/dev/disk/by-uuid/5847-D97D";
+    fsType = "exfat";
+    neededForBoot = false;
+  };
+
+  # nvme0n1p4 - NTFS
+  fileSystems."/mnt/nvme4" = {
+    device = "/dev/disk/by-uuid/DE0C8BAB0C8B7CF1";
+    fsType = "ntfs";
+    neededForBoot = false;
+  };
+
+  boot.supportedFilesystems = [ "ntfs" "exfat" ];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -62,13 +80,14 @@ nixpkgs.overlays = [
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-
-  # Enable KDE Plasma 
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true; # one of these is for login screen.. 
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
+
+  programs.hyprland.enable = true; # enable Hyprland
+
+  # Optional, hint Electron apps to use Wayland:
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -118,8 +137,6 @@ nixpkgs.overlays = [
   # Install firefox.
   programs.firefox.enable = true;
 
-  programs.nix-ld.enable = true;
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -138,55 +155,21 @@ nixpkgs.overlays = [
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alacritty
-    corepack
     displaylink 
     fastfetch
-    gcc
     git
-    go
-    input-leap
     neovim
-    nodejs_22
-    ntfs3g # read ntfs formatted drives
-    openjdk21
-    python3
-    pywal
     starship
-    thefuck
     tmux
-    unzip
-    usbutils # was to check the status of attached usb devices
     vim
-    yarn
-    # xdg-desktop-portal ## for input leap
-    # xdg-desktop-portal-gtk ## for input leap
-    xdg-desktop-portal-hyprland ## for input leap
-    # xdg-desktop-portal-wlr ## for input leap
+    ntfs3g # read ntfs formatted drives
+    # hypr
+    kitty # required for the default Hyprland config
+    kdePackages.dolphin
+    swww
+    waybar
+    wofi
   ];
-  
-  # input leap to work
-  xdg = {
-    portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      config = {
-        common.default = ["gtk"];
-        hyprland.default = ["gtk" "hyprland"];
-      };
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-gnome
-      ];
-    };
-  };
-
-  environment.variables = {
-    JAVA_HOME = "${pkgs.openjdk21}";
-    GOROOT = "${pkgs.go}";
-    GOPATH = "$HOME/go";
-    PATH = [ "$HOME/go/bin" ];
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -202,7 +185,7 @@ nixpkgs.overlays = [
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 24800 ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -214,4 +197,44 @@ nixpkgs.overlays = [
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+
+  ## All for the Nvidia graphics card
+  # Enable OpenGL
+  hardware.graphics = {
+    enable = true;
+  };
+
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia" "displaylink" "modesetting"];
+
+  hardware.nvidia = {
+
+    # Modesetting is required.
+    modesetting.enable = true;
+
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # Enable this if you have graphical corruption issues or application crashes after waking
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # of just the bare essentials.
+    powerManagement.enable = false;
+
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of 
+    # supported GPUs is at: 
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Only available from driver 515.43.04+
+    open = true;
+
+    # Enable the Nvidia settings menu,
+	# accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 }

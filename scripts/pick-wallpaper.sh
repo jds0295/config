@@ -2,7 +2,7 @@
 
 # WALLPAPER_DIR="${HOME}/Pictures/wallpapers"
 WALLPAPER_DIR="/mnt/red/rescue from ubuntu/Wallpaper-Bank/wallpapers"
-CHOICE=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) | sort | wofi --dmenu --insensitive --prompt "Pick a wallpaper:")
+CHOICE=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) | sort | (pidof wofi ||wofi --dmenu --insensitive --prompt "Pick a wallpaper:"))
 
 if [[ -n "$CHOICE" ]]; then
   swww img "$CHOICE" --transition-type any
