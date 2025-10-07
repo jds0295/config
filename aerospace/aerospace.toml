@@ -52,7 +52,7 @@ outer.left =       2
 outer.bottom =     2
 outer.top = [
   { monitor.'built-in' = 0 },
-  { monitor.main = 0 },
+  { monitor.main = 21 },
   { monitor.'^(?!.*\bmain\b).*' = 0 },
   0
 ]
@@ -78,6 +78,7 @@ outer.right =      2
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
 alt-enter = 'exec-and-forget open -n /Applications/Alacritty.app'
+alt-q = ['exec-and-forget killall Microsoft\ AutoUpdate && killall Microsoft\ Update\ Assistant']
 
 alt-h = 'focus left'
 alt-j = 'focus down'
@@ -195,6 +196,12 @@ run = ['layout floating']
 if.app-id = 'com.microsoft.teams2'
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
+
+# [[on-window-detected]]
+# if.app-id = 'com.microsoft.autoupdate2'
+# check-further-callbacks = true
+# run = ['exec-and-forget killall Microsoft\ AutoUpdate && killall Microsoft\ Update\ Assistant'
+# ]
 
 # [[on-window-detected]]
 # if.app-id = 'com.microsoft.teams2'

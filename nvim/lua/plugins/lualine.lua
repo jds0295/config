@@ -4,10 +4,10 @@ return {
 	config = function()
 		require("lualine").setup {
 			options = {
-				-- theme = 'dracula',
+				theme = 'dracula',
 				-- theme = 'ayu_mirage',
 				-- theme = 'iceberg_dark',
-				theme = 'pywal',
+				-- theme = 'pywal',
 				globalstatus = true,
 			},
 			sections = {

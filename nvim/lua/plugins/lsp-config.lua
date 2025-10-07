@@ -10,17 +10,19 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"lua_ls",
-					"gopls",
-					"templ",
-					"rust_analyzer",
-					"html",
-					"tailwindcss",
-					"groovyls",
-					"spectral", -- yaml, json
 					"eslint", -- js, ts
-					"ts_ls", -- typescript
+					"gopls",
+					"groovyls",
+					"html",
 					"jdtls", -- java
+					"lua_ls",
+					"pyright",
+					"ruff", -- python linter
+					"rust_analyzer",
+					"spectral", -- yaml, json
+					"tailwindcss",
+					"templ",
+					"ts_ls", -- typescript
 				},
 			})
 		end,
@@ -32,6 +34,7 @@ return {
 				ensure_installed = {
 					"js-debug-adapter",
 					"delve",
+					"debugpy",
 				},
 			})
 		end,
@@ -169,7 +172,17 @@ return {
 			lspconfig.kotlin_language_server.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.pylsp.setup({
+			lspconfig.pyright.setup({
+				capabilities = capabilities,
+				settings = {
+					python = {
+						analysis = {
+							diagnosticMode = "openFilesOnly",
+						}
+					}
+				}
+			})
+			lspconfig.ruff.setup({
 				capabilities = capabilities,
 			})
 			-- lspconfig.ansiblels.setup({

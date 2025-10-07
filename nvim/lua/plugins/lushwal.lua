@@ -7,12 +7,12 @@ return {
 	},
 	lazy = false,
 	config = function ()
-		vim.cmd.colorscheme "lushwal"
-		vim.g.lushwal_configuration = {
-			transparent_background = true,
-			addons = {
-				lualine = true,
-			}
-		}
+		-- vim.g.lushwal_configuration = {
+		-- 	transparent_background = true,
+		-- 	addons = {
+		-- 		lualine = true,
+		-- 	}
+		-- }
+		-- vim.cmd.colorscheme "lushwal"
 	end
 }

@@ -9,12 +9,16 @@
 
 !aerospace/**
 !alacritty/**
-!tmux/**
+!hypr/**
+!kitty/**
 !nixos/**
 !nvim/**
-!yabai/**
-!skhd/**
+!scripts/**
 !sketchybar/**
+!skhd/**
+!tmux/**
+!wal/templates/**
+!yabai/**
 !zshrc/**
 
 # ignore

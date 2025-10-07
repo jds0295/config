@@ -44,6 +44,20 @@ return {
     --   -- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
     -- })
 
+    dap.adapters.debugpy = {
+      type = 'executable';
+      command = 'python';
+      args = { '-m', 'debugpy.adapter',};
+    }
+
+    dap.configurations.python = {
+      {
+        type = 'debugpy'; -- the type here established the link to the adapter definition: `dap.adapters.debugpy`
+        request = 'launch';
+        name = "Launch file";
+      }
+    }
+
     dap.configurations.javascript = {
       -- Debug single nodejs files
       {
@@ -193,7 +207,9 @@ return {
     vim.keymap.set("n", "<leader>ds", dap.close, { desc = "stop debugging" })
     vim.keymap.set("n", "<leader>dd", dap.disconnect, { desc = "disconnect" })
     vim.keymap.set("n", "<leader>dr", dap.run_to_cursor, { desc = "run to cursor" })
-    vim.keymap.set("n", "<leader>dl", function() dap.list_breakpoints() end, { desc = "list breakpoints" })
+    vim.keymap.set("n", "<leader>dl", function() dap.list_breakpoints() vim.cmd("copen") end, { desc = "list breakpoints" })
+    -- vim.keymap.set("n", "<leader>dl", function() dap.list_breakpoints() end, { desc = "list breakpoints" })
+    -- vim.keymap.set("n", "<leader>dl", dap.list_breakpoints, { desc = "list breakpoints" })
     vim.keymap.set("n", "<F9>", dap.continue, { desc = "continue" })
     vim.keymap.set("n", "<F10>", dap.step_into, { desc = "step into" })
     vim.keymap.set("n", "<F11>", dap.step_over, { desc = "step over" })
