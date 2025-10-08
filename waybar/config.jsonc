@@ -8,17 +8,17 @@
   ],
   "modules-center": [
     "network",
-    "pulseaudio",
+    "memory",
     "cpu",
     "hyprland/workspaces",
-    "memory",
-    "disk",
     "custom/gpu",
+    "disk",
     "clock"
   ],
   "modules-right": [
     "tray",
     "idle_inhibitor",
+    "pulseaudio",
     "custom/notification",
     "battery",
     "custom/exit"
@@ -99,9 +99,10 @@
   },
 
   "custom/gpu": {
-    "format": "GPU: {}",
+    "format": "  : {}  ",
     "interval": 2,
-    "exec": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader,nounits | awk -F',' '{ printf \"%s%% %sMiB/%sMiB\", $1, $2, $3 }'"
+    // "exec": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader,nounits | awk -F',' '{ printf \"%s%% %sMiB/%sMiB\", $1, $2, $3 }'"
+    "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk -F',' '{ printf \"%s%%\", $1 }'"
   },
 
   "custom/exit": {
