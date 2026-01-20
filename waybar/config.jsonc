@@ -17,7 +17,12 @@
   ],
   "modules-right": [
     "tray",
+    // "custom/connections",
+    "custom/podman",
     "idle_inhibitor",
+    "custom/temperature",
+    // "temperature",
+    "bluetooth",
     "pulseaudio",
     "custom/notification",
     "battery",
@@ -115,6 +120,62 @@
     "tooltip": false,
     "format": " ",
     "on-click": "rofi -show drun"
+  },
+
+  "custom/connections": {
+    "exec": "~/.config/scripts/get_connections.sh",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 10
+  },
+
+  "custom/podman": {
+    "exec": "~/.config/scripts/podman-status.sh",
+    "interval": 10,
+    "return-type": "json",
+    "tooltip": true,
+    "format": "{icon}  {text}",
+    "format-icons": [
+      "󰅚", "", ""
+    ],
+  },
+
+  "custom/temperature": {
+    "exec": "~/.config/scripts/temps_overview.sh",
+    "interval": 30,
+    "return-type": "json",
+    "tooltip": true,
+    "format": " {text}󰔄",
+    // "tooltip-format": "{text}",
+  }, 
+
+  "temperature": {
+    "thermal-zone": 1,
+    // "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    // "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C ",
+    "tooltip-format": "{text}",
+  },
+
+  "bluetooth": {
+    "format": " {status}",
+    "format-on": "",
+    "format-off": "󰂲",
+    "format-connected": "󰂱",
+    // "format-connected": "󰂱 {device_alias}",
+    "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "
+      if bluetoothctl show | grep -q 'Powered: yes'; then 
+        bluetoothctl power off
+      else 
+        bluetoothctl power on 
+      fi ",
+    "on-click-right": "bluetoothctl disconnect",
   },
 
   "idle_inhibitor": {

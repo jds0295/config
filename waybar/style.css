@@ -70,8 +70,13 @@ tooltip label {
 #battery,
 #network,
 #tray,
+#temperature,
+#bluetooth,
 #pulseaudio,
 #custom-notification,
+#custom-temperature,
+#custom-connections,
+#custom-podman,
 #custom-startmenu,
 #custom-exit,
 #idle_inhibitor,
@@ -115,6 +120,51 @@ tooltip label {
   color: @color4;
   background: @background;
   border-radius: 15px 50px 15px 50px;
+}
+#temperature {
+  color: @color5;
+  background: @background;
+  border-radius: 15px 50px 15px 50px ;
+  margin: 4px;
+}
+#custom-temperature {
+  color: @color5;
+  background: @background;
+  border-radius: 15px 50px 15px 50px ;
+  margin: 4px;
+}
+#custom-podman {
+  color: @color2;
+  background: @background;
+  border-radius: 15px 50px 15px 50px ;
+  margin: 4px;
+}
+#custom-connections {
+  color: @color5;
+  background: @background;
+  border-radius: 15px 50px 15px 50px ;
+  margin: 4px;
+}
+#bluetooth {
+  font-size: 16px;
+  color: @color13;
+  background: @background;
+  border-radius: 15px 50px 15px 50px ;
+  margin: 4px;
+}
+#bluetooth.connected {
+  font-size: 12px;
+  color: @color13;
+  background: @background;
+  border-radius: 15px 50px 15px 50px ;
+  margin: 4px;
+}
+#bluetooth.off {
+  font-size: 16px;
+  color: @color7;
+  background: @background;
+  border-radius: 15px 50px 15px 50px ;
+  margin: 4px;
 }
 #pulseaudio {
   color: @color13;

@@ -11,6 +11,7 @@
 !alacritty/**
 !hypr/**
 !kitty/**
+!mako/**
 !nixos/**
 !nvim/**
 !scripts/**

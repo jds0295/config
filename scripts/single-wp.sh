@@ -15,5 +15,8 @@ if [[ -n "$CHOICE" ]]; then
   fi
 
   swww img "$CHOICE" --transition-type random --outputs "$ACTIVE_MONITOR"
+
+  sleep 1.00
+  notify-send "Wallpaper set" "$(basename "$CHOICE")" -h string:image-path:"$CHOICE" --expire-time=5000
 fi
 
