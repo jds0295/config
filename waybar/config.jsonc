@@ -4,7 +4,8 @@
 
   "modules-left": [
     "custom/startmenu",
-    "hyprland/window"
+    "hyprland/window",
+    "mpris"
   ],
   "modules-center": [
     "network",
@@ -23,6 +24,7 @@
     "custom/temperature",
     // "temperature",
     "bluetooth",
+    "custom/dualsense",
     "pulseaudio",
     "custom/notification",
     "battery",
@@ -49,6 +51,19 @@
   "hyprland/window": {
     "max-length": 60,
     "separate-outputs": false
+  },
+
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "player-icons": {
+      "default": "▶",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": "⏸"
+    },
+    "ignored-players": ["firefox"]
   },
 
   "memory": {
@@ -137,6 +152,16 @@
     "format": "{icon}  {text}",
     "format-icons": [
       "󰅚", "", ""
+    ],
+  },
+
+  "custom/dualsense": {
+    "exec": "~/.config/scripts/dualsense.sh",
+    "interval": 10,
+    "return-type": "json",
+    "format": "󰊴{icon}{text}",
+    "format-icons": [
+      "", " 󰁻", " 󰁽", " 󰁿", " 󰂁", " 󰁹"
     ],
   },
 

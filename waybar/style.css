@@ -64,6 +64,7 @@ tooltip label {
 }
 /* --- Modules --- */
 #window,
+#mpris,
 #memory,
 #cpu,
 #disk,
@@ -79,12 +80,19 @@ tooltip label {
 #custom-podman,
 #custom-startmenu,
 #custom-exit,
+#custom-dualsense,
 #idle_inhibitor,
 #clock {
   margin: 5px;
   padding: 2px 20px;
 }
 #window {
+  color: #E6E1CF;
+  /* background: #131721; */
+  background: @background;
+  border-radius: 50px 15px 50px 15px;
+}
+#mpris {
   color: #E6E1CF;
   /* background: #131721; */
   background: @background;
@@ -141,6 +149,12 @@ tooltip label {
 }
 #custom-connections {
   color: @color5;
+  background: @background;
+  border-radius: 15px 50px 15px 50px ;
+  margin: 4px;
+}
+#custom-dualsense {
+  color: @color11;
   background: @background;
   border-radius: 15px 50px 15px 50px ;
   margin: 4px;
