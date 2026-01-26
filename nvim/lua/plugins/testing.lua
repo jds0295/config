@@ -39,6 +39,7 @@ return {
 				require("neotest-go"),
 				require("neotest-python")({
 					dap = { justMyCode = false },
+					args = { "-m", "agent or not agent" },
 					runner = "pytest",
 				})
 			},

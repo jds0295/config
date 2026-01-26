@@ -13,6 +13,12 @@ return {
 		end
 	},
 	{
-		"tpope/vim-fugitive"
+		"tpope/vim-fugitive",
+		config = function()
+			vim.keymap.set('n', '<leader>gs', ':Git<CR>', { noremap = true, silent = true, desc = 'git status' })
+			vim.keymap.set('n', '<leader>g3', ':Gvdiffsplit!<CR>', { noremap = true, silent = true, desc = 'git diff 3 split' })
+			vim.keymap.set('n', '<leader>gt', ':diffget //2<CR>', { noremap = true, silent = true, desc = 'git accept left' })
+			vim.keymap.set('n', '<leader>gy', ':diffget //3<CR>', { noremap = true, silent = true, desc = 'git accept right' })
+		end
 	}
 }

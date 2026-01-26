@@ -50,13 +50,21 @@ return {
       args = { '-m', 'debugpy.adapter',};
     }
 
-    dap.configurations.python = {
-      {
-        type = 'debugpy'; -- the type here established the link to the adapter definition: `dap.adapters.debugpy`
-        request = 'launch';
-        name = "Launch file";
-      }
+    dap.adapters.python = {
+      type = 'executable';
+      command = 'python';
+      args = { '-m', 'debugpy.adapter',};
     }
+
+    -- Configuration of adaptors
+
+    -- dap.configurations.python = {
+    --   {
+    --     type = 'debugpy'; -- the type here established the link to the adapter definition: `dap.adapters.debugpy`
+    --     request = 'launch';
+    --     name = "Launch file";
+    --   }
+    -- }
 
     dap.configurations.javascript = {
       -- Debug single nodejs files

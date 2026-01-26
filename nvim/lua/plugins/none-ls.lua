@@ -11,6 +11,7 @@ return {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.npm_groovy_lint,
 				null_ls.builtins.formatting.prettierd,
+				-- null_ls.builtins.diagnostics.mypy,
 				require("none-ls.formatting.jq"), -- requires none-ls-extras.nvim
 				-- require("none-ls.diagnostics.eslint"),
 				-- null_ls.builtins.diagnostics.clang_check.with({
