@@ -44,7 +44,11 @@ return {
 								return "⎁ " .. ""
 							end
 						end
-					}
+					},
+					-- opencode
+					-- {
+					-- 	require("opencode").statusline,
+					-- }
 				},
 				lualine_y = {
 					'encoding',

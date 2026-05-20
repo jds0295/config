@@ -46,3 +46,10 @@ vim.filetype.add({
 
 -- treat Jenkinsfiles as groovy
 -- vim.api.nvim_command('autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy')
+
+-- auto-reload files changed on disk (e.g. by external agents or tools)
+-- vim.opt.autoread = true
+-- vim.opt.updatetime = 1000
+-- vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+--   command = "checktime"
+-- })
