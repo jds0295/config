@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # WALLPAPER_DIR="${HOME}/Pictures/wallpapers"
-WALLPAPER_DIR="/mnt/red/rescue from ubuntu/Wallpaper-Bank/wallpapers"
+WALLPAPER_DIR="/home/james/Photos/wallpapers"
 
 CHOICE=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) | sort | (pidof wofi ||wofi --dmenu --insensitive --prompt "Pick a wallpaper:"))
 # CHOICE=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) |
@@ -9,8 +9,8 @@ CHOICE=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -i
 
 
 if [[ -n "$CHOICE" ]]; then
-  swww img "$CHOICE" --transition-type random
-  # swww img "$CHOICE" --outputs "$ACTIVE_MONITOR"
+  awww img "$CHOICE" --transition-type random
+  # awww img "$CHOICE" --outputs "$ACTIVE_MONITOR"
   wal -i "$CHOICE" -n --cols16
   pkill waybar; waybar &
   tmux source-file ~/.config/tmux/tmux.conf

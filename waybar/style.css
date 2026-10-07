@@ -1,68 +1,49 @@
-/* @import "~/.cache/wal/colors-waybar.css"; */
-@import "/home/james/.cache/wal/colors-waybar.css";
-@define-color background #131721;
+/* ==========================================================================
+   THUNDERBIRDS (1965) - "Tracy Island control strip"
+   Fixed palette (no pywal). Previous theme backed up as style.pill.css
+   ========================================================================== */
+
+/* --- Palette --- */
+@define-color night     #0B1A3A;  /* panel face / night sky       */
+@define-color nightHi   #16295A;  /* strip highlight              */
+@define-color deep      #07102A;  /* recessed bays / tooltips     */
+@define-color silver    #C9D2DA;  /* bezel, TB1 body              */
+@define-color cream     #F2E9D0;  /* 60s panel lettering          */
+@define-color irblue    #5B8FD0;  /* International Rescue uniform */
+@define-color sky       #7EC8F0;  /* promo sky                    */
+@define-color tb1red    #D7262E;  /* Thunderbird 1 nose & fins    */
+@define-color tb2green  #5BA83A;  /* Thunderbird 2 hull           */
+@define-color tb3orange #E2431E;  /* Thunderbird 3                */
+@define-color tb4yellow #F5C518;  /* Thunderbird 4                */
+@define-color tb5gold   #D9B45A;  /* Thunderbird 5 station        */
+@define-color fabpink   #F28CB1;  /* FAB 1                        */
 
 * {
   font-size: 12px;
   font-family: JetBrainsMono Nerd Font, Font Awesome, sans-serif;
   font-weight: bold;
+  min-height: 0;
 }
+
+/* --- The control strip --- */
 window#waybar {
-  background-color: rgba(26,27,38,0);
-  border-bottom: 0px solid rgba(26,27,38,0);
+  background: linear-gradient(to bottom, alpha(@nightHi, 0.9), alpha(@night, 0.9) 60%, alpha(@deep, 0.9));
+  border-bottom: 2px solid @silver;
   border-radius: 0px;
-  /* color: #E6B673; */
-  color: @color13;
+  color: @cream;
 }
-/* --- Workspaces --- */
-#workspaces {
-  /* background: linear-gradient(45deg, #131721, #131721); */
-  background: linear-gradient(45deg, @background, @background);
-  margin-top: 1px;
-  padding: 0px 0px;
-  border-radius: 15px;
-  border: 0px;
-  font-style: normal;
-  color: @color0;
-}
-#workspaces button {
-  padding: 0px 5px;
-  margin: 4px 3px;
-  border-radius: 15px;
-  border: 0px;
-  color: @cursor;
-  background: linear-gradient(45deg, @color1, @color2);
-  opacity: 0.5;
-  transition: all 0.3s ease-in-out;
-}
-#workspaces button.active {
-  /* padding: 0px 5px; */
-  /* margin: 4px 3px; */
-  /* border-radius: 15px; */
-  /* border: 0px; */
-  color: @color15;
-  background: linear-gradient(45deg, @color10, @color11);
-  opacity: 1.0;
-  min-width: 40px;
-  transition: all 0.3s ease-in-out;
-}
-#workspaces button:hover {
-  /* border-radius: 15px; */
-  color: @color0; /*text color*/
-  background: linear-gradient(45deg, @color13, @color14);
-  /* opacity: 0.8; */
-  opacity: 1.0;
-}
+
 /* --- Tooltip --- */
 tooltip {
-  background: @background;
-  border: 1px solid @color14;
-  border-radius: 10px;
+  background: @deep;
+  border: 1px solid @silver;
+  border-radius: 4px;
 }
 tooltip label {
-  color: @foreground;
+  color: @cream;
 }
-/* --- Modules --- */
+
+/* --- Panel segments (shared) --- */
 #window,
 #mpris,
 #memory,
@@ -74,6 +55,7 @@ tooltip label {
 #temperature,
 #bluetooth,
 #pulseaudio,
+#custom-gpu,
 #custom-notification,
 #custom-temperature,
 #custom-connections,
@@ -83,139 +65,132 @@ tooltip label {
 #custom-dualsense,
 #idle_inhibitor,
 #clock {
-  margin: 5px;
-  padding: 2px 20px;
+  margin: 3px 2px 4px 2px;
+  padding: 0px 12px;
+  border-radius: 4px;
+  background: alpha(@deep, 0.55);
+  border-left: 1px solid alpha(@silver, 0.15);
+  border-right: 1px solid alpha(@silver, 0.15);
+  color: @cream;
 }
-#window {
-  color: #E6E1CF;
-  /* background: #131721; */
-  background: @background;
-  border-radius: 50px 15px 50px 15px;
-}
-#mpris {
-  color: #E6E1CF;
-  /* background: #131721; */
-  background: @background;
-  border-radius: 50px 15px 50px 15px;
-}
-#memory {
-  color: @color12;
-  /* background: #131721; */
-  background: @background;
-  border-radius: 50px 15px 50px 15px;
-}
-#cpu {
-  color: @color10;
-  background: @background;
-  border-radius: 50px 15px 50px 15px;
-}
-#disk {
-  color: @color11;
-  background: @background;
-  border-radius: 15px 50px 15px 50px;
-}
-#battery {
-  color: #F07178;
-  background: #0F1419;
-  border-radius: 15px 50px 15px 50px;
-}
-#network {
-  color: @color12;
-  background: @background;
-  border-radius: 50px 15px 50px 15px;
-}
-#tray {
-  color: @color4;
-  background: @background;
-  border-radius: 15px 50px 15px 50px;
-}
-#temperature {
-  color: @color5;
-  background: @background;
-  border-radius: 15px 50px 15px 50px ;
-  margin: 4px;
-}
-#custom-temperature {
-  color: @color5;
-  background: @background;
-  border-radius: 15px 50px 15px 50px ;
-  margin: 4px;
-}
-#custom-podman {
-  color: @color2;
-  background: @background;
-  border-radius: 15px 50px 15px 50px ;
-  margin: 4px;
-}
-#custom-connections {
-  color: @color5;
-  background: @background;
-  border-radius: 15px 50px 15px 50px ;
-  margin: 4px;
-}
-#custom-dualsense {
-  color: @color11;
-  background: @background;
-  border-radius: 15px 50px 15px 50px ;
-  margin: 4px;
-}
-#bluetooth {
-  font-size: 16px;
-  color: @color13;
-  background: @background;
-  border-radius: 15px 50px 15px 50px ;
-  margin: 4px;
-}
-#bluetooth.connected {
-  font-size: 12px;
-  color: @color13;
-  background: @background;
-  border-radius: 15px 50px 15px 50px ;
-  margin: 4px;
-}
-#bluetooth.off {
-  font-size: 16px;
-  color: @color7;
-  background: @background;
-  border-radius: 15px 50px 15px 50px ;
-  margin: 4px;
-}
-#pulseaudio {
-  color: @color13;
-  background: @background;
-  border-radius: 15px 50px 15px 50px ;
-  margin: 4px;
-}
-#custom-notification {
-  color: #95E6CB;
-  background: #0F1419;
-  border-radius: 15px 50px 15px 50px;
-}
-#custom-gpu {
-  color: @color9;
-  background: @background;
-  border-radius: 15px 50px 15px 50px;
-  margin: 5px 5px 5px 5px;
-}
+
+/* Each segment gets a coloured indicator lamp-strip along its top edge */
+#custom-startmenu    { color: @tb1red;    box-shadow: inset 0 3px @tb1red; }
+#window              { color: @sky;       box-shadow: inset 0 3px @sky; }
+#mpris               { color: @fabpink;   box-shadow: inset 0 3px @fabpink; }
+
+#network             { color: @tb5gold;   box-shadow: inset 0 3px @tb5gold; }
+#memory              { color: @tb2green;  box-shadow: inset 0 3px @tb2green; }
+#cpu                 { color: @tb1red;    box-shadow: inset 0 3px @tb1red; }
+#custom-gpu          { color: @tb3orange; box-shadow: inset 0 3px @tb3orange; }
+#disk                { color: @tb4yellow; box-shadow: inset 0 3px @tb4yellow; }
+
+#tray                { color: @silver;    box-shadow: inset 0 3px @silver; }
+#custom-podman       { color: @tb2green;  box-shadow: inset 0 3px @tb2green; }
+#custom-connections  { color: @irblue;    box-shadow: inset 0 3px @irblue; }
+#idle_inhibitor      { color: @sky;       box-shadow: inset 0 3px @sky; }
+#temperature,
+#custom-temperature  { color: @tb3orange; box-shadow: inset 0 3px @tb3orange; }
+#bluetooth           { color: @irblue;    box-shadow: inset 0 3px @irblue; font-size: 14px; }
+#bluetooth.connected { font-size: 12px; }
+#bluetooth.off       { color: alpha(@silver, 0.5); box-shadow: inset 0 3px alpha(@silver, 0.4); }
+#custom-dualsense    { color: @fabpink;   box-shadow: inset 0 3px @fabpink; }
+#pulseaudio          { color: @tb4yellow; box-shadow: inset 0 3px @tb4yellow; }
+#pulseaudio.muted    { color: alpha(@silver, 0.5); }
+#custom-notification { color: @tb5gold;   box-shadow: inset 0 3px @tb5gold; }
+#battery             { color: @tb2green;  box-shadow: inset 0 3px @tb2green; }
+#custom-exit         { color: @tb1red;    box-shadow: inset 0 3px @tb1red; }
+
+/* Start / exit act as the strip's end caps */
 #custom-startmenu {
-  color: @color9;
-  background: @background;
-  border-radius: 0px 15px 50px 0px;
-  margin: 5px 5px 5px 0px;
+  margin-left: 0px;
+  padding: 0px 14px 0px 12px;
+  border-radius: 0px 4px 4px 0px;
+  border-left: none;
+  min-width: 44px;
+  background-color: alpha(@tb1red, 0.12);
+  background-image: url("/home/james/.config/waybar/assets/international-rescue.svg");
+  background-size: 44px 26px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 #custom-exit {
-  color: @color9;
-  background: @background;
-  border-radius: 15px 0px 0px 50px;
-  margin: 5px 0px 5px 5px;
+  margin-right: 0px;
+  padding: 0px 12px 0px 14px;
+  border-radius: 4px 0px 0px 4px;
+  border-right: none;
+  background: alpha(@tb1red, 0.12);
 }
-#idle_inhibitor {
-  color: @color7;
-  background: @background;
-  border-radius: 15px 50px 15px 50px;
+#custom-startmenu:hover,
+#custom-exit:hover {
+  background-color: alpha(@tb1red, 0.3);
 }
+
+/* Mission clock: framed in silver */
 #clock {
-  color: @color14;
-  background: @background;
-  border-radius: 15px 50px 15px 50px;
+  color: @cream;
+  border: 1px solid @silver;
+  box-shadow: inset 0 3px @silver;
+  background: @deep;
+}
+
+/* Battery warning lamps */
+#battery.warning:not(.charging) {
+  color: @tb4yellow;
+  box-shadow: inset 0 3px @tb4yellow;
+}
+@keyframes alert {
+  to {
+    background: @tb1red;
+    color: @cream;
+  }
+}
+#battery.critical:not(.charging) {
+  color: @tb1red;
+  box-shadow: inset 0 3px @tb1red;
+  animation-name: alert;
+  animation-duration: 0.8s;
+  animation-timing-function: steps(2);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* --- Workspaces: the launch bay --- */
+#workspaces {
+  margin: 3px 6px 4px 6px;
+  padding: 0px 3px;
+  border-radius: 4px;
+  background: @deep;
+  border: 1px solid alpha(@silver, 0.25);
+  box-shadow: inset 0 2px 4px alpha(black, 0.6);
+}
+#workspaces button {
+  padding: 0px 6px;
+  margin: 3px 2px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  box-shadow: none;
+  text-shadow: none;
+  background: transparent;
+  color: @silver;
+  opacity: 0.55;
+  transition: all 0.3s ease-in-out;
+}
+#workspaces button.active {
+  min-width: 34px;
+  opacity: 1.0;
+  background: linear-gradient(to bottom, @irblue, @night);
+  border: 1px solid @silver;
+  box-shadow: 0 0 6px alpha(@sky, 0.6);
+}
+#workspaces button.urgent {
+  opacity: 1.0;
+  background: alpha(@tb1red, 0.5);
+  border: 1px solid @tb1red;
+}
+#workspaces button:hover {
+  opacity: 1.0;
+  background: alpha(@irblue, 0.35);
+  border: 1px solid alpha(@silver, 0.6);
+  box-shadow: none;
 }

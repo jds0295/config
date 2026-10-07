@@ -27,16 +27,24 @@
     "custom/dualsense",
     "pulseaudio",
     "custom/notification",
-    "battery",
+    // "battery", removed: crashes waybar (0.15) when a BT/virtual controller battery disappears
     "custom/exit"
   ],
 
   "hyprland/workspaces": {
-    "format": "{name}",
+    "format": "{icon}",
+    // 1-5 craft colours (1 = strong blue), 6-10 Tracy brothers' sash colours
     "format-icons": {
-      "default": " ",
-      "active": " ",
-      "urgent": " "
+      "1": "<span color='#3A7FD0'>1</span>",
+      "2": "<span color='#5BA83A'>2</span>",
+      "3": "<span color='#E2431E'>3</span>",
+      "4": "<span color='#F5C518'>4</span>",
+      "5": "<span color='#D9B45A'>5</span>",
+      "6": "<span color='#8EC9EE'>6</span>",   // Scott  - light blue
+      "7": "<span color='#FBE38E'>7</span>",   // Virgil - pale yellow
+      "8": "<span color='#FFFFFF'>8</span>",   // Alan   - white
+      "9": "<span color='#F59A3C'>9</span>",   // Gordon - amber-orange
+      "10": "<span color='#B79BD6'>10</span>"  // John   - lilac
     },
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1"
@@ -120,7 +128,10 @@
       "car": "",
       "default": ["", "", ""]
     },
-    "on-click": "pavucontrol"
+    // left: device switcher menu, right: full mixer, middle: mute
+    "on-click": "~/.config/scripts/audio-output.sh",
+    "on-click-right": "pavucontrol",
+    "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
   },
 
   "custom/gpu": {
@@ -137,9 +148,11 @@
   },
 
   "custom/startmenu": {
-    "tooltip": false,
-    "format": " ",
-    "on-click": "rofi -show drun"
+    // icon is the International Rescue roundel, drawn via CSS (assets/international-rescue.svg)
+    "tooltip": true,
+    "tooltip-format": "International Rescue",
+    "format": " ",
+    "on-click": "pidof wofi || wofi --show drun"
   },
 
   "custom/connections": {
@@ -179,14 +192,14 @@
     // "tooltip-format": "{text}",
   }, 
 
-  "temperature": {
-    "thermal-zone": 1,
-    // "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
-    // "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C ",
-    "format": "{temperatureC}°C ",
-    "tooltip-format": "{text}",
-  },
+  // "temperature": {
+  //   "thermal-zone": 1,
+  //   // "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+  //   // "critical-threshold": 80,
+  //   // "format-critical": "{temperatureC}°C ",
+  //   "format": "{temperatureC}°C ",
+  //   "tooltip-format": "{text}",
+  // },
 
   "bluetooth": {
     "format": " {status}",
@@ -199,13 +212,7 @@
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-    "on-click": "
-      if bluetoothctl show | grep -q 'Powered: yes'; then 
-        bluetoothctl power off
-      else 
-        bluetoothctl power on 
-      fi ",
-    "on-click-right": "bluetoothctl disconnect",
+    "on-click": "~/.config/scripts/bluetooth-menu.sh toggle", // eww popup (also SUPER+SHIFT+B)
   },
 
   "idle_inhibitor": {
@@ -218,39 +225,27 @@
   },
 
   "custom/notification": {
-    "tooltip": false,
-    "format": "{icon} {}",
+    "format": "{icon} {text}",
     "format-icons": {
-      "notification": "<span foreground='red'><sup></sup></span>",
+      "notification": "<span foreground='#D7262E'><sup></sup></span>",
       "none": "",
-      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-notification": "<span foreground='#D7262E'><sup></sup></span>",
       "dnd-none": "",
-      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-notification": "<span foreground='#D7262E'><sup></sup></span>",
       "inhibited-none": "",
-      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-notification": "<span foreground='#D7262E'><sup></sup></span>",
       "dnd-inhibited-none": ""
     },
     "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t",
+    // mako: left = show last, middle = dismiss all, right = toggle do-not-disturb
+    "exec": "~/.config/scripts/mako-status.sh",
+    "interval": 2,
+    "signal": 8,
+    "tooltip": true,
+    "on-click": "makoctl restore; pkill -RTMIN+8 waybar",
+    "on-click-middle": "makoctl dismiss -a; pkill -RTMIN+8 waybar",
+    "on-click-right": "makoctl mode -t do-not-disturb; pkill -RTMIN+8 waybar",
     "escape": true
-  },
-
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
-    "format-plugged": "󱘖 {capacity}%",
-    "format-icons": [
-      "󰁺", "󰁻", "󰁼", "󰁽", "󰁾",
-      "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
-    ],
-    "on-click": "",
-    "tooltip": false
   }
 }
 

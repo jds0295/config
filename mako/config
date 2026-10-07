@@ -9,3 +9,9 @@ margin=10
 border-size=2
 border-radius=4
 
+[desktop-entry="vivaldi-stable"]
+ignore-timeout=1
+group-by=app-name
+
+[mode=do-not-disturb]
+invisible=1
