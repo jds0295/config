@@ -35,11 +35,11 @@
     "format": "{icon}",
     // 1-5 craft colours (1 = strong blue), 6-10 Tracy brothers' sash colours
     "format-icons": {
-      "1": "<span color='#3A7FD0'>1</span>",
-      "2": "<span color='#5BA83A'>2</span>",
-      "3": "<span color='#E2431E'>3</span>",
-      "4": "<span color='#F5C518'>4</span>",
-      "5": "<span color='#D9B45A'>5</span>",
+      "1": "<span color='#3A7FD0'>1</span>",   // TB1  - strong blue
+      "2": "<span color='#5BA83A'>2</span>",   // TB2  - green
+      "3": "<span color='#E2431E'>3</span>",   // TB3  - red-orange
+      "4": "<span color='#F5C518'>4</span>",   // TB4  - yellow
+      "5": "<span color='#D9B45A'>5</span>",   // TB5  - gold/tan
       "6": "<span color='#8EC9EE'>6</span>",   // Scott  - light blue
       "7": "<span color='#FBE38E'>7</span>",   // Virgil - pale yellow
       "8": "<span color='#FFFFFF'>8</span>",   // Alan   - white
@@ -120,6 +120,9 @@
     "format-source": " {volume}%",
     "format-source-muted": "",
     "format-icons": {
+      // sink names are matched before port types. UE BOOM reports itself as a
+      // headset over Bluetooth (class 0x240404), so force a speaker icon.
+      "bluez_output.00_0D_44_DD_58_35.1": "󰓃",
       "headphone": "",
       "hands-free": "",
       "headset": "",
@@ -174,13 +177,14 @@
   },
 
   "custom/dualsense": {
-    "exec": "~/.config/scripts/dualsense.sh",
-    "interval": 10,
+    // shown only while a DualSense is connected (USB or Bluetooth);
+    // the script prints a JSON line whenever it connects/disconnects/changes
+    "exec": "~/.config/scripts/dualsense.sh waybar",
+    "restart-interval": 5,
     "return-type": "json",
-    "format": "󰊴{icon}{text}",
-    "format-icons": [
-      "", " 󰁻", " 󰁽", " 󰁿", " 󰂁", " 󰁹"
-    ],
+    "hide-empty-text": true,
+    "format": "󰊴 {}",
+    "on-click": "~/.config/scripts/dualsense.sh toggle"
   },
 
   "custom/temperature": {
@@ -205,9 +209,8 @@
     "format": " {status}",
     "format-on": "",
     "format-off": "󰂲",
-    "format-connected": "󰂱",
-    // "format-connected": "󰂱 {device_alias}",
-    "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+    "format-connected": "󰂱 {num_connections}",
+    "format-connected-battery": "󰂱 {num_connections}",
     "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",

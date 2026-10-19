@@ -16,6 +16,9 @@ if [[ -n "$CHOICE" ]]; then
   tmux source-file ~/.config/tmux/tmux.conf
 
   cat ~/.config/starship.toml ~/.cache/wal/colors-starship.toml > ~/.config/starship-colored.toml
+  # eww popups import ~/.cache/wal/colors.scss; reload so they use the new palette
+  eww ping >/dev/null 2>&1 && eww reload >/dev/null 2>&1
+  ~/.config/scripts/dualsense.sh pywal >/dev/null 2>&1   # lightbar, if in pywal mode
   export STARSHIP_CONFIG=~/.config/starship-colored.toml
   sleep 1.00
   notify-send "Wallpaper set" "$(basename "$CHOICE")" -h string:image-path:"$CHOICE" --expire-time=5000
