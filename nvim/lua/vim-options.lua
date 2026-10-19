@@ -16,21 +16,16 @@ local map = vim.api.nvim_set_keymap
 -- "This unsets the "last search pattern" register by hitting return
 vim.keymap.set('n', '<CR>', ':noh<CR><CR>', { noremap = true, silent = true })
 
--- map the hjkl keys + ctrl to move between windows in i, n and t modes
-map('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
-map('n', '<C-j>', '<C-w>j', { noremap = true, silent = true })
-map('n', '<C-k>', '<C-w>k', { noremap = true, silent = true })
-map('n', '<C-l>', '<C-w>l', { noremap = true, silent = true })
-
+-- window navigation (n/i/t) is handled by vim-tmux-navigator (see plugins/tmux.lua)
+-- so nvim windows and tmux panes are navigated seamlessly with <C-h/j/k/l>.
+-- that plugin does not handle `i` mode, so mapping here still, though it does not really work as intended.
 map('i', '<C-h>', '<Esc><C-w>h', { noremap = true, silent = true })
 map('i', '<C-j>', '<Esc><C-w>j', { noremap = true, silent = true })
 map('i', '<C-k>', '<Esc><C-w>k', { noremap = true, silent = true })
 map('i', '<C-l>', '<Esc><C-w>l', { noremap = true, silent = true })
 
-map('t', '<C-h>', '<C-\\><C-n><C-w>h', { noremap = true, silent = true })
-map('t', '<C-j>', '<C-\\><C-n><C-w>j', { noremap = true, silent = true })
-map('t', '<C-k>', '<C-\\><C-n><C-w>k', { noremap = true, silent = true })
-map('t', '<C-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true })
+-- esc gets out of terminal mode
+map('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
 -- alt + c in visual mode to copy to system clipboard
 -- map('v', '<M-c>', '"+y', { noremap = true, silent = true })

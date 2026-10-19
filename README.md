@@ -1,27 +1,56 @@
-# Config for machine
+# dotfiles
 
-## This repo should be the content of ~/.config
-## macOS
+Personal configuration files for macOS (and some Linux/NixOS bits). Clone this repo as `~/.config`.
 
-> Should do all this with ansible or some script
+## What's in here
 
-1. install homebrew
+| Tool | Purpose |
+|------|---------|
+| **nvim** | Neovim config (Lua, lazy.nvim) |
+| **tmux** | Terminal multiplexer |
+| **aerospace** | macOS tiling window manager |
+| **yabai + skhd** | Alternative tiling WM + hotkey daemon |
+| **sketchybar** | Custom macOS menu bar |
+| **alacritty / kitty** | Terminal emulators |
+| **starship** | Shell prompt |
+| **fish / zsh** | Shell configs |
+| **karabiner** | Keyboard remapping |
+| **git / gh** | Git and GitHub CLI config |
+| **btop** | System monitor |
+| **waybar / hypr / wofi / mako** | Wayland/Hyprland desktop stack |
 
-    ```bash
-        look at the source
-    ``` 
+## Setup (macOS)
 
-1. tmux
-1. nvim
-    1. ripgrep - for telescope live grep to work
-    1. fd - also this may be required for live grep to work
-1. iterm2 or alacritty
-1. yabai
-1. skhd
-1. sketchybar
+> TODO: automate with Ansible or a bootstrap script
 
-1. git
-1. oh-my-zsh
-1. docker
-1. kubectl
+1. **Homebrew** — [brew.sh](https://brew.sh)
+2. **Core tools**
+   ```bash
+   brew install neovim tmux ripgrep fd git gh starship fish
+   ```
+3. **Neovim deps** — `ripgrep` (Telescope live grep) and `fd` (file finding) are required.
+4. **Window management**
+   ```bash
+   brew install --cask aerospace
+   # or: brew install koekeishiya/formulae/yabai koekeishiya/formulae/skhd
+   ```
+5. **Terminal**
+   ```bash
+   brew install --cask alacritty   # or kitty
+   ```
+6. **Shell**
+   ```bash
+   brew install oh-my-zsh   # or use fish
+   ```
+7. **Extras**
+   ```bash
+   brew install --cask docker
+   brew install kubectl
+   ```
+
+## Clone
+
+```bash
+git clone git@github.com:jds0295/config.git ~/.config
+```
 

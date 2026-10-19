@@ -69,8 +69,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require("lspconfig")
-			local util = require("lspconfig/util")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local border = {
@@ -112,11 +110,14 @@ return {
 				},
 			})
 
-			lspconfig.gopls.setup({
+			vim.lsp.config("*", {
 				capabilities = capabilities,
+			})
+
+			vim.lsp.config("gopls", {
 				cmd = { "gopls", "serve" },
 				filetypes = { "go", "gomod" },
-				root_dir = util.root_pattern({ "go.work", "go.mod", ".git" }),
+				root_markers = { "go.work", "go.mod", ".git" },
 				settings = {
 					gopls = {
 						analyses = {
@@ -126,24 +127,17 @@ return {
 					},
 				},
 			})
-			lspconfig.templ.setup({
-				capabilities = capabilities,
+			vim.lsp.config("templ", {
 				filetypes = { "templ" },
 			})
-			lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.html.setup({
-				capabilities = capabilities,
+			vim.lsp.config("html", {
 				filetypes = { "html", "templ" },
 			})
-			lspconfig.tailwindcss.setup({
-				capabilities = capabilities,
+			vim.lsp.config("tailwindcss", {
 				filetypes = { "templ", "astro", "javascript", "typescript", "react" },
 				init_options = { userLanguages = { templ = "html" } },
 			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
+			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -152,52 +146,22 @@ return {
 					},
 				},
 			})
-			lspconfig.groovyls.setup({
-				capabilities = capabilities,
+			vim.lsp.config("groovyls", {
 				filetypes = { "groovy", "Jenkinsfile" },
 			})
-			lspconfig.spectral.setup({
-				capabilities = capabilities,
+			vim.lsp.config("spectral", {
 				filetypes = { "yaml", "yml" },
 			})
-			lspconfig.eslint.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.svelte.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.kotlin_language_server.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
+			vim.lsp.config("pyright", {
 				settings = {
 					python = {
 						analysis = {
 							diagnosticMode = "openFilesOnly",
-						}
-					}
-				}
+						},
+					},
+				},
 			})
-			lspconfig.ruff.setup({
-				capabilities = capabilities,
-			})
-			-- lspconfig.ansiblels.setup({
-			-- 	capabilities = capabilities,
-			-- 	filetypes = { "yaml" },
-			-- 	settings = {
-			-- 		ansible = {
-			-- 			validation = {
-			-- 				enabled = true,
-			-- 			},
-			-- 		},
-			-- 	},
-			-- })
-			lspconfig.ccls.setup({
-				capabilities = capabilities,
+			vim.lsp.config("ccls", {
 				filetypes = { "m", "objc" },
 				init_options = {
 					cache = {
@@ -205,8 +169,24 @@ return {
 					},
 				},
 			})
-			-- require('lspconfig')['gopls'].setup {}
 
+			vim.lsp.enable({
+				"gopls",
+				"templ",
+				"rust_analyzer",
+				"html",
+				"tailwindcss",
+				"lua_ls",
+				"groovyls",
+				"spectral",
+				"eslint",
+				"ts_ls",
+				"svelte",
+				"kotlin_language_server",
+				"pyright",
+				"ruff",
+				"ccls",
+			})
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true, silent = true, desc = "hover" })
 			vim.keymap.set(
 				"n",

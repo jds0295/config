@@ -98,7 +98,6 @@ return {
         type = "",
         request = "launch",
       },
-      	require("dap.ext.vscode").load_launchjs(nil, nil)
     }
 
     dap.configurations.typescript = {
@@ -133,7 +132,6 @@ return {
         type = "",
         request = "launch",
       },
-      	require("dap.ext.vscode").load_launchjs(nil, nil)
     }
 
     -- go debugging
