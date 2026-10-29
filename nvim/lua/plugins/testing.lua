@@ -8,6 +8,7 @@ return {
 		"nvim-neotest/neotest-jest", -- Jest adapter for neotest
 		"nvim-neotest/neotest-go",
 		"nvim-neotest/neotest-python",
+		"rcasia/neotest-java",
 	},
 
 	config = function()
@@ -37,6 +38,7 @@ return {
 					end
 				}),
 				require("neotest-go"),
+				require("neotest-java"),
 				require("neotest-python")({
 					dap = { justMyCode = false },
 					args = { "-m", "agent or not agent" },
