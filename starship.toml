@@ -129,11 +129,15 @@ when = '''test -n "$TMUX" '''
 [nix_shell]
 style = "bg:color_bg4"
 symbol = "❄️"
-impure_msg = '[impure shell](bold red $style)'
+impure_msg = '[](bold red $style)'
 pure_msg = '[pure shell](bold green $style)'
 unknown_msg = '[unknown shell](bold yellow $style)'
-format = '[$symbol $state( \($name\))](bold blue $style) '
+format = '[$symbol $state( \($name\))](bold blue $style)'
 # format = '[[$symbol$state](fg:color_fg4 bg:color_bg4)]($style)'
+
+[jobs]
+style = "bg:color_bg4"
+format = '[$symbol($version)]($style)'
 
 [[battery.display]]
 style = "bold red bg:color_bg4"
