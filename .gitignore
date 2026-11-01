@@ -1,10 +1,12 @@
 # ignore all by default
 *
+# re-include directories so tools (rg/fd/telescope) can descend into them
+!*/
 
 # explicitly include
-!.gitignore
-!README.md
-!starship.toml
+!/.gitignore
+!/README.md
+!/starship.toml
 !karabiner/karabiner.json
 
 !aerospace/**
